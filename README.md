@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @Raezil
+- 👋 Hi, I’m Kamil Mosciszko
 - 👀 I’m interested in DApp developement
 - 🌱 I’m currently learning blockchain and smart contracts
 - 💞️ I’m looking to collaborate on memoryArena
