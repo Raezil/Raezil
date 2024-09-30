@@ -1,7 +1,6 @@
 - 👋 Hi, I’m Kamil Mosciszko
-- 👀 I’m interested in DApp developement
-- 🌱 I’m currently learning blockchain and smart contracts
-- 💞️ I’m looking to collaborate on memoryArena
+- 👀 I’m interested in web developement
+- 💞️ I’m looking to collaborate on memoryArena and GoEventBus
 - 📫 How to reach me +48 575 044 972 or kmosc@protonmail.com
 
 <!---
