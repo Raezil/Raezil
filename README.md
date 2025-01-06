@@ -1,6 +1,5 @@
 - 👋 Hi, I’m Kamil Mosciszko
 - 👀 I’m interested in web developement, backend
-- 💞️ I’m looking to collaborate on memoryArena and GoEventBus
 - 📫 How to reach me +48 575 044 972 or kmosc@protonmail.com
 
 <!---
