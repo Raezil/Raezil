@@ -1,4 +1,4 @@
-- 👋 Hi, I’m Kamil Mosciszko
+- 👋 Hi, I’m Kamil Mościszko
 - 👀 I’m interested in web developement, backend. I'm currently working on Thunder minimalistic backend framework.
 - 📫 How to reach me kmosc@protonmail.com
 
