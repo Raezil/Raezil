@@ -3,697 +3,566 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder - A Minimalist Backend Framework in Go</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Kamil Mościszko | Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        /* Base Styles */
+        :root {
+            --main-dark: #0a0a0a;
+            --accent: #ff3e00;
+            --text: #f0f0f0;
+            --gray: #333;
+            --light-gray: #555;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
         
         body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            background-color: var(--main-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
             position: relative;
-            overflow: hidden;
+            margin-bottom: 3rem;
         }
         
-        .hero-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-            z-index: 1;
-        }
-        
-        .hero-container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .feature-card {
-            transition: all 0.3s ease;
-            border-top: 4px solid transparent;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-top: 4px solid #3b82f6;
-        }
-        
-        .glow {
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-        }
-        
-        .code-block {
-            background-color: #1e293b;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            overflow-x: auto;
-            position: relative;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
-        .code-block::before {
+        h2:after {
             content: "";
             position: absolute;
-            top: 0;
             left: 0;
-            right: 0;
-            height: 30px;
-            background-color: #0f172a;
-            border-radius: 0.5rem 0.5rem 0 0;
-            border-bottom: 1px solid #2d3748;
-        }
-        
-        .code-block::after {
-            content: "•••";
-            position: absolute;
-            top: 8px;
-            left: 15px;
-            color: #64748b;
-            font-size: 18px;
-            letter-spacing: 2px;
-        }
-        
-        .code-block code {
-            display: block;
-            margin-top: 20px;
-            padding-top: 10px;
-            color: #e2e8f0;
-            line-height: 1.8;
-        }
-        
-        .section-spacing {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-        
-        .navbar-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-        }
-        
-        .navbar-scrolled {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
-        .btn-primary {
-            background-color: #3b82f6;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            border: 2px solid white;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .btn-secondary:hover {
-            background-color: white;
-            color: #3b82f6;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.5);
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -10px;
             width: 50px;
             height: 4px;
-            background-color: #3b82f6;
-            border-radius: 2px;
+            background: var(--accent);
         }
         
-        /* Floating animation */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
         
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
         
-        /* Pulse animation */
-        .pulse {
-            animation: pulse 2s infinite;
+        section {
+            padding: 6rem 0;
         }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-        
-        /* Terminal design */
-        .terminal {
-            background-color: #1a1d21;
-            border-radius: 0.75rem;
+        /* Header & Navigation */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
-        .terminal-header {
-            height: 2rem;
-            background-color: #2d333a;
+        nav {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 0 1rem;
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(10, 10, 10, 0.9);
         }
         
-        .terminal-button {
-            height: 0.75rem;
-            width: 0.75rem;
-            border-radius: 50%;
-            margin-right: 0.5rem;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
         }
         
-        .terminal-button.red { background-color: #ff5f57; }
-        .terminal-button.yellow { background-color: #ffbd2e; }
-        .terminal-button.green { background-color: #28c840; }
-        
-        .terminal-body {
-            padding: 1rem;
-            color: #e2e8f0;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.875rem;
-            line-height: 1.7;
+        .logo span {
+            color: var(--accent);
         }
         
-        .terminal-prompt {
-            color: #3b82f6;
-            font-weight: bold;
+        .nav-links {
+            display: flex;
+            list-style: none;
         }
         
-        .terminal-output {
-            color: #cbd5e1;
+        .nav-links li {
+            margin-left: 2rem;
         }
         
-        .terminal-success {
-            color: #10b981;
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
         
-        /* Rotating icons */
-        .rotating-icon {
-            animation: rotate 10s linear infinite;
+        .nav-links a:hover {
+            color: var(--accent);
         }
         
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding-top: 80px;
         }
         
-        /* Card hover effects */
-        .doc-card {
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+        
+        .highlight {
+            color: var(--accent);
+        }
+        
+        /* Work Section */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+        
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 350px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .work-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .work-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             transition: all 0.3s ease;
         }
         
-        .doc-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .work-item:hover .work-overlay {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9) 80%);
         }
         
-        /* Pulsing dots animation */
-        .pulsing-dots span {
+        .work-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .work-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 0;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 500px;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-image:after {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--accent);
+            z-index: -1;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            padding: 8px 15px;
+            background-color: var(--light-gray);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--accent);
+        }
+        
+        /* Contact Section */
+        .contact {
+            position: relative;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--gray);
+            border: none;
+            border-radius: 3px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin: 0 3px;
-            animation: pulsingDots 1.5s infinite ease-in-out;
-            background-color: #3b82f6;
+            padding: 15px 30px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .pulsing-dots span:nth-child(2) {
-            animation-delay: 0.2s;
+        .btn:hover {
+            background-color: #e03600;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 62, 0, 0.2);
         }
         
-        .pulsing-dots span:nth-child(3) {
-            animation-delay: 0.4s;
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            background-color: var(--gray);
+            text-align: center;
         }
         
-        @keyframes pulsingDots {
-            0%, 100% { transform: scale(0.2); opacity: 0.2; }
-            50% { transform: scale(1); opacity: 1; }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 20px;
         }
         
-        /* Badge style */
-        .badge {
+        .social-link {
             display: inline-flex;
             align-items: center;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background-color: #dbeafe;
-            color: #1e40af;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: all 0.3s;
         }
         
-        .badge i {
-            margin-right: 0.25rem;
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
         }
         
-        /* Custom gradient */
-        .custom-gradient {
-            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 60%;
+                background-color: var(--main-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s ease;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 2rem 0;
+            }
+            
+            .menu-btn {
+                display: block;
+                cursor: pointer;
+                z-index: 101;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50" id="top">
-    <!-- Navbar -->
-    <nav id="navbar" class="navbar-fixed">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center" id="top">
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-                </svg>
-              <a href="#top">
-                <span class="ml-2 text-xl font-bold text-gray-800">Thunder</span>
-              </a>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#features" class="text-gray-700 hover:text-blue-600 transition font-medium">Features</a>
-                <a href="#use-cases" class="text-gray-700 hover:text-blue-600 transition font-medium">Use Cases</a>
-                <a href="#getting-started" class="text-gray-700 hover:text-blue-600 transition font-medium">Getting started</a>
-                <a href="#deploy" class="text-gray-700 hover:text-blue-600 transition font-medium">Deploy on Kubernetes</a>
-            </div>
-            <div>
-                <a href="https://github.com/Raezil/Thunder" class="btn-primary">
-                    <i class="fab fa-github mr-2"></i> GitHub
-                </a>
-            </div>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">KAMIL<span>.</span>M</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient pt-32 pb-20 text-white">
-        <div class="hero-grid"></div>
-        <div class="container mx-auto px-6 hero-container">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInLeft">
-                    <div class="badge mb-4">
-                        <i class="fas fa-bolt"></i> High Performance
-                    </div>
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Thunder</h1>
-                    <h2 class="text-2xl md:text-3xl font-light mb-6">A Minimalist Backend Framework in Go</h2>
-                    <p class="text-lg mb-8 text-blue-100">A gRPC-Gateway-powered framework with Prisma, Kubernetes, and Go for building scalable microservices.</p>
-                    <div class="flex space-x-4">
-                        <a href="#getting-started" class="btn-primary">
-                            <i class="fas fa-rocket mr-2"></i> Get Started
-                        </a>
-                        <a href="https://github.com/Raezil/Thunder" class="btn-secondary">
-                            <i class="fab fa-github mr-2"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center animate__animated animate__fadeInRight">
-                    <div class="terminal floating">
-                        <div class="terminal-header">
-                            <div class="terminal-button red"></div>
-                            <div class="terminal-button yellow"></div>
-                            <div class="terminal-button green"></div>
-                        </div>
-                        <div class="terminal-body">
-                            <p><span class="terminal-prompt">$</span> ./install.sh</p>
-                            <p><span class="terminal-prompt">$</span> thunder init myproject</p>
-                            <p class="terminal-output">Creating new Thunder project: myproject</p>
-                            <p class="terminal-output">Setting up project structure...</p>
-                            <p class="terminal-success">✓ Project created successfully!</p>
-                            <p><span class="terminal-prompt">$</span> cd myproject</p>
-                            <p><span class="terminal-prompt">$</span> go mod tidy</p>
-                            <p><span class="terminal-prompt">$</span> thunder serve</p>
-                            <p class="terminal-output">Starting gRPC server on port 50051</p>
-                            <p class="terminal-output">Starting REST gateway on port 8080</p>
-                            <p class="terminal-success">✓ Server is running!</p>
-                            <div class="pulsing-dots mt-2">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Header/Hero Section -->
+    <header id="home">
+        <div class="container hero">
+            <h1>KAMIL <span class="highlight">MOŚCISZKO</span></h1>
+<p>Backend Developer specializing in <span class="highlight">Golang, scalable systems, and modern API architecture</span>.</p>
+            <a href="#work" class="btn">View My Work</a>
         </div>
-    </section>
+    </header>
 
-    <!-- Badges Section -->
-    <section class="bg-white py-8 shadow-md">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-4 items-center">
-                <a href="https://golang.org" class="inline-block transform hover:scale-105 transition">
-                    <img src="https://img.shields.io/badge/Go-1.23-blue" alt="Go Version" />
-                </a>
-                <a href="LICENSE" class="inline-block transform hover:scale-105 transition">
-                    <img src="https://img.shields.io/github/license/Raezil/Thunder" alt="License" />
-                </a>
-                <a href="https://github.com/Raezil/Thunder/stargazers" class="inline-block transform hover:scale-105 transition">
-                    <img src="https://img.shields.io/github/stars/Raezil/Thunder" alt="Stars" />
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="section-spacing">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center section-title">Key Features</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Feature Cards (existing content) -->
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-bolt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">gRPC + REST</h3>
-                    <p class="text-gray-600">Automatically expose RESTful APIs from gRPC services with gRPC-Gateway.</p>
-                </div>
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-database text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Prisma Integration</h3>
-                    <p class="text-gray-600">Efficient database management and migrations with Prisma ORM.</p>
-                </div>
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-cubes text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Kubernetes Ready</h3>
-                    <p class="text-gray-600">Easily deploy and scale your services with Kubernetes.</p>
-                </div>
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">TLS Security</h3>
-                    <p class="text-gray-600">Secure gRPC communications with TLS for enhanced security.</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-                <!-- More Feature Cards -->
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-file-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Structured Logging</h3>
-                    <p class="text-gray-600">Built-in zap logging for better insights into your application.</p>
-                </div>
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.5s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-tachometer-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Rate Limiting & Auth</h3>
-                    <p class="text-gray-600">Pre-configured middleware for rate limiting and authentication.</p>
-                </div>
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-puzzle-piece text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Modular & Extensible</h3>
-                    <p class="text-gray-600">Easily extend Thunder for custom use cases and requirements.</p>
-                </div>
-                <div class="feature-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp" style="animation-delay: 0.7s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-terminal text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Thunder CLI</h3>
-                    <p class="text-gray-600">Generate, deploy, and create new projects effortlessly.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section id="use-cases" class="section-spacing">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center section-title">Use Cases</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-                <!-- Existing Use Cases Cards -->
-                <div class="bg-white p-6 rounded-lg shadow-md feature-card animate__animated animate__fadeInUp">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-bolt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">High-Performance API Development</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>gRPC-first APIs with RESTful interfaces</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Critical performance and low latency applications</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Strongly-typed APIs with protobufs</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-network-wired text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Microservices Architecture</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Efficient inter-service communication</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Kubernetes deployments with built-in service discovery</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Automatic scaling and load balancing</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-database text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Database Management with Prisma</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Type-safe queries and easy migrations</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Support for multiple databases</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Efficient database management</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-feather-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Lightweight Backend Alternative</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Minimalist and powerful framework</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Alternative to Gin or Echo</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Fast, simple, and modular backend</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
-                    <div class="text-blue-600 mb-4 bg-blue-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
-                        <i class="fas fa-feather-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Kubernetes & Cloud-Native</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Containerized environments using Docker.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Automatic service scaling and load balancing.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- Getting Started Section -->
-<section id="getting-started" class="section-spacing bg-gray-50">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center section-title">Getting Started</h2>
-        <div class="mt-8">
-            <pre class="code-block"><code>
-# Create a Protobuf file (example.proto)
-syntax = "proto3";
-
-package example;
-
-import "google/api/annotations.proto";
-
-service Example {
-  rpc SayHello(HelloRequest) returns (HelloResponse) {
-    option (google.api.http) = {
-      get: "/v1/example/sayhello"
-    };
-  };
-}
-
-message HelloRequest {
-  string name = 1;
-}
-
-message HelloResponse {
-  string message = 1;
-}
-
-# Define the service in services.json
-[
-  {
-    "ServiceName": "Example",
-    "ServiceStruct": "ExampleServiceServer",
-    "ServiceRegister": "RegisterExampleServer",
-    "HandlerRegister": "RegisterExampleHandler"
-  }
-]
-
-# Generate the service implementation
-thunder generate --proto=example.proto
-            </code></pre>
+    <!-- Work Portfolio Section -->
+    <section id="work">
+        <div class="container">
+            <h2 class="fade-in">Featured Projects</h2>
+ <div class="work-grid">
+    <div class="work-item fade-in">
+        <div class="work-overlay">
+            <h3>MemoryArena</h3>
+            <p>Go memory pool library for arena-based memory management</p>
         </div>
     </div>
-</section>
-
-
-<!-- Deploy on Kubernetes Section -->
-<section id="deploy" class="section-spacing bg-gray-50">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center section-title">Deploy on Kubernetes</h2>
-        <div class="mt-8">
-            <p class="text-gray-700 text-center mb-4">Follow these steps to deploy Thunder on Kubernetes:</p>
-            <pre class="code-block"><code>
-<span class="terminal-prompt">$</span> # PgBouncer Secret Configuration
-<span class="terminal-prompt">$</span> echo '"postgres" "postgres"' | base64
-<span class="terminal-output">InBvc3RncmVzIiAicG9zdGdyZXMiCg==</span>
-<span class="terminal-prompt">$</span> # Update the pgbouncer-all.yaml with the new base64 value
-
-<span class="terminal-prompt">$</span> # Generate TLS Certificates
-<span class="terminal-prompt">$</span> cd cmd
-<span class="terminal-prompt">$</span> mkdir certs
-<span class="terminal-prompt">$</span> openssl req -x509 -newkey rsa:4096 -keyout certs/server.key -out certs/server.crt -days 365 -nodes \
-  -subj "/CN=localhost" \
-  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
-<span class="terminal-output">Generating a RSA private key</span>
-<span class="terminal-output">...............+++++</span>
-<span class="terminal-output">...+++++</span>
-<span class="terminal-output">writing new private key to 'certs/server.key'</span>
-<span class="terminal-output">-----</span>
-
-<span class="terminal-prompt">$</span> # Create Kubernetes Secrets
-<span class="terminal-prompt">$</span> kubectl create secret generic app-secret \
-  --from-literal=DATABASE_URL="postgres://postgres:postgres@pgbouncer-service:6432/thunder?sslmode=disable" \
-  --from-literal=JWT_SECRET="secret"
-<span class="terminal-success">secret/app-secret created</span>
-
-<span class="terminal-prompt">$</span> kubectl create secret generic postgres-secret \
-  --from-literal=POSTGRES_USER=postgres \
-  --from-literal=POSTGRES_PASSWORD=postgres \
-  --from-literal=POSTGRES_DB=thunder
-<span class="terminal-success">secret/postgres-secret created</span>
-
-<span class="terminal-prompt">$</span> # Build & Deploy Docker Image
-<span class="terminal-prompt">$</span> thunder build
-<span class="terminal-output">Building Thunder container image...</span>
-<span class="terminal-success">✓ Successfully built thunder:latest</span>
-
-<span class="terminal-prompt">$</span> thunder deploy
-<span class="terminal-output">Deploying Thunder to Kubernetes...</span>
-<span class="terminal-success">✓ Deployment successful!</span>
-
-<span class="terminal-prompt">$</span> # Check pod status
-<span class="terminal-prompt">$</span> kubectl get pods -n default
-<span class="terminal-output">NAME                        READY   STATUS    RESTARTS   AGE</span>
-<span class="terminal-output">thunder-5f7b849d8d-x2jtl    1/1     Running   0          30s</span>
-<span class="terminal-output">postgres-0                  1/1     Running   0          30s</span>
-<span class="terminal-output">pgbouncer-7c8b6d5b4-rmvp9  1/1     Running   0          30s</span>
-
-<span class="terminal-prompt">$</span> kubectl describe pod thunder-5f7b849d8d-x2jtl -n default
-<span class="terminal-output">Name:         thunder-5f7b849d8d-x2jtl</span>
-<span class="terminal-output">Namespace:    default</span>
-<span class="terminal-output">Priority:     0</span>
-<span class="terminal-output">...</span>
-            </code></pre>
+    <div class="work-item fade-in">
+        <div class="work-overlay">
+            <h3>GoEventBus</h3>
+            <p>Event sourcing framework with Go idioms and 82% test coverage</p>
         </div>
     </div>
-</section>
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Thunder. All rights reserved.</p>
-            <p>
-                <a href="https://github.com/Raezil/Thunder" class="text-blue-400 hover:underline">GitHub</a> |
-                <a href="LICENSE" class="text-blue-400 hover:underline">License</a>
-            </p>
+    <div class="work-item fade-in">
+        <div class="work-overlay">
+            <h3>Thunder</h3>
+            <p>Modern gRPC-Gateway web framework with Prisma & WebSocket support</p>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+<h2>About Me</h2>
+<p>I'm Kamil Mościszko, a passionate Golang developer focused on performance, concurrency, and modern backend architecture. I enjoy building fast, reliable systems and open-source tools that solve real-world problems.</p>
+<p>I've created projects such as <strong>MemoryArena</strong> (a high-performance memory pool), <strong>GoEventBus</strong> (a Go idiomatic event-sourcing library), and <strong>Thunder</strong> (a minimalist gRPC-Gateway framework with WebSocket support). I love working at the intersection of developer experience and system efficiency.</p>
+<p>My strengths include building scalable APIs, designing low-latency systems, and contributing to open-source infrastructure libraries.</p>
+<div class="skills">
+    <span class="skill-tag">Golang</span>
+    <span class="skill-tag">gRPC</span>
+    <span class="skill-tag">WebSockets</span>
+    <span class="skill-tag">Prisma</span>
+    <span class="skill-tag">PostgreSQL</span>
+    <span class="skill-tag">Concurrency</span>
+    <span class="skill-tag">Event Sourcing</span>
+    <span class="skill-tag">Open Source</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+<a href="https://www.linkedin.com/in/kamilm97/" class="social-link" target="_blank" rel="noopener noreferrer">in</a>
+            </div>
+            <p>&copy; 2025 Kamil Mościszko. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Simple fade-in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {threshold: 0.3});
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
