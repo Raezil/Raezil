@@ -1,569 +1,623 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamil Mościszko | Portfolio</title>
-    <style>
-        /* Base Styles */
-        :root {
-            --main-dark: #0a0a0a;
-            --accent: #ff3e00;
-            --text: #f0f0f0;
-            --gray: #333;
-            --light-gray: #555;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        body {
-            background-color: var(--main-dark);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            letter-spacing: -1px;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-        
-        h2:after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 50px;
-            height: 4px;
-            background: var(--accent);
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        section {
-            padding: 6rem 0;
-        }
-        
-        /* Header & Navigation */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            background-color: rgba(10, 10, 10, 0.9);
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100%;
-            padding-top: 80px;
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 0.5s;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 0.7s;
-        }
-        
-        .highlight {
-            color: var(--accent);
-        }
-        
-        /* Work Section */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 3rem;
-        }
-        
-        .work-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 5px;
-            height: 350px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .work-item:hover {
-            transform: translateY(-10px);
-        }
-        
-        .work-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .work-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .work-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            transition: all 0.3s ease;
-        }
-        
-        .work-item:hover .work-overlay {
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9) 80%);
-        }
-        
-        .work-overlay h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        
-        .work-overlay p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 0;
-        }
-        
-        /* About Section */
-        .about {
-            background-color: var(--gray);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-            height: 500px;
-            position: relative;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .about-image:after {
-            content: "";
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            right: -20px;
-            bottom: -20px;
-            border: 2px solid var(--accent);
-            z-index: -1;
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            gap: 10px;
-        }
-        
-        .skill-tag {
-            padding: 8px 15px;
-            background-color: var(--light-gray);
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        
-        .skill-tag:hover {
-            background-color: var(--accent);
-        }
-        
-        /* Contact Section */
-        .contact {
-            position: relative;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--gray);
-            border: none;
-            border-radius: 3px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--accent);
-        }
-        
-        textarea.form-input {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 3px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn:hover {
-            background-color: #e03600;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 62, 0, 0.2);
-        }
-        
-        /* Footer */
-        footer {
-            padding: 3rem 0;
-            background-color: var(--gray);
-            text-align: center;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-            gap: 20px;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--light-gray);
-            color: var(--text);
-            font-size: 1.5rem;
-            transition: all 0.3s;
-        }
-        
-        .social-link:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        
-        .fade-in.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image {
-                width: 100%;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 60%;
-                background-color: var(--main-dark);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: right 0.5s ease;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 2rem 0;
-            }
-            
-            .menu-btn {
-                display: block;
-                cursor: pointer;
-                z-index: 101;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kamil Mościszko | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --main-dark: #080808;
+      --accent: #ff0044;
+      --accent-glow: rgba(255, 0, 68, 0.5);
+      --secondary: #00eeff;
+      --text: #f0f0f0;
+      --gray: #111111;
+      --light-gray: #222222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: var(--text);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 0, 68, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 238, 255, 0.05) 0%, transparent 20%),
+        linear-gradient(180deg, #080808 0%, #000 100%);
+      background-attachment: fixed;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 0, 68, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: scanline 2s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .logo span {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      letter-spacing: 1px;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent-glow);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    header.hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle at center, transparent 0%, #000 70%);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4.5rem;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 3px;
+      position: relative;
+      text-shadow: 0 0 20px rgba(255, 0, 68, 0.5);
+      animation: glitch 5s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 90%, 100% { transform: translate(0); }
+      92% { transform: translate(-2px, 2px); }
+      94% { transform: translate(2px, -2px); }
+      96% { transform: translate(-1px, -1px); }
+      98% { transform: translate(1px, 1px); }
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      color: #aaa;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      border: 2px solid var(--accent);
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 0, 68, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px var(--accent);
+      background: var(--accent);
+      color: black;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    section {
+      padding: 8rem 3rem;
+      position: relative;
+    }
+
+    section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .work-item {
+      background: rgba(15, 15, 15, 0.9);
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid #222;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .work-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 0;
+    }
+
+    .work-item:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 15px 30px rgba(255, 0, 68, 0.2);
+    }
+
+    .work-item:hover::before {
+      opacity: 0.1;
+    }
+
+    .work-overlay {
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+      border-left: 3px solid var(--accent);
+    }
+
+    .work-overlay h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .work-overlay p {
+      font-size: 1.1rem;
+      color: #bbb;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .about {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 3rem;
+      justify-content: center;
+    }
+
+    .skill-tag {
+      padding: 8px 16px;
+      background: rgba(17, 17, 17, 0.8);
+      font-weight: bold;
+      transition: all 0.3s;
+      border: 1px solid #333;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-tag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .skill-tag:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
+    }
+
+    .skill-tag:hover::before {
+      width: 100%;
+      opacity: 0.2;
+    }
+
+    footer {
+      padding: 3rem;
+      background: rgba(8, 8, 8, 0.9);
+      text-align: center;
+      border-top: 1px solid #222;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: var(--gray);
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: white;
+      transition: all 0.3s;
+      border: 1px solid #333;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.3s;
+      z-index: 0;
+    }
+
+    .social-link span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
+    }
+
+    .social-link:hover::before {
+      height: 100%;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Matrix digital rain effect */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -5;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    /* Glowing effect for accent text */
+    .accent-text {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent-glow);
+      font-weight: 600;
+    }
+
+    /* Animated border for sections */
+    .border-glow {
+      position: relative;
+    }
+
+    .border-glow::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      border: 2px solid var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: -1;
+    }
+
+    .border-glow:hover::after {
+      opacity: 1;
+    }
+
+    /* Terminal typing effect */
+    .terminal-line {
+      border-right: 2px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: fit-content;
+      margin: 0 auto;
+      animation: typing 4s steps(60) 1s 1 normal both, blink 1s steps(1) infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">KAMIL<span>.</span>M</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+  <canvas id="matrixRain" class="matrix-bg"></canvas>
 
-    <!-- Header/Hero Section -->
-    <header id="home">
-        <div class="container hero">
-            <h1>KAMIL <span class="highlight">MOŚCISZKO</span></h1>
-<p>Backend Developer specializing in <span class="highlight">Golang, scalable systems, and modern API architecture</span>.</p>
-            <a href="#work" class="btn">View My Work</a>
-        </div>
-    </header>
+  <nav>
+    <div class="logo">KAMIL<span>.M</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- Work Portfolio Section -->
-    <section id="work">
-        <div class="container">
-            <h2 class="fade-in">Featured Projects</h2>
-<div class="work-grid">
-    <a class="work-item fade-in" href="https://github.com/Raezil/memoryArena" target="_blank" rel="noopener noreferrer">
+  <header id="home" class="hero">
+    <h1>KAMIL MOŚCISZKO</h1>
+    <p class="terminal-line">Backend Developer crafting <span class="accent-text">scalable systems</span>, <span class="accent-text">fast APIs</span>, and open-source tools in Golang.</p>
+    <a href="#work" class="btn">EXPLORE MY WORK</a>
+  </header>
+
+  <section id="work">
+    <h2>FEATURED PROJECTS</h2>
+    <div class="work-grid">
+      <a class="work-item border-glow fade-in" href="https://github.com/Raezil/memoryArena" target="_blank">
         <div class="work-overlay">
-            <h3>MemoryArena</h3>
-            <p>Go memory pool library for arena-based memory management</p>
+          <h3>MemoryArena</h3>
+          <p>High-performance memory pool library for Go, enabling fast bulk allocations with a focus on reducing GC overhead in high-throughput systems.</p>
         </div>
-    </a>
-    <a class="work-item fade-in" href="https://github.com/Raezil/GoEventBus" target="_blank" rel="noopener noreferrer">
+      </a>
+      <a class="work-item border-glow fade-in" href="https://github.com/Raezil/GoEventBus" target="_blank">
         <div class="work-overlay">
-            <h3>GoEventBus</h3>
-            <p>Event sourcing framework with Go idioms and 82% test coverage</p>
+          <h3>GoEventBus</h3>
+          <p>Event-driven framework for Go built with simplicity and testability in mind, offering 82% test coverage and seamless integration with domain-driven design patterns.</p>
         </div>
-    </a>
-    <a class="work-item fade-in" href="https://github.com/Raezil/Thunder" target="_blank" rel="noopener noreferrer">
+      </a>
+      <a class="work-item border-glow fade-in" href="https://github.com/Raezil/Thunder" target="_blank">
         <div class="work-overlay">
-            <h3>Thunder</h3>
-            <p>Modern gRPC-Gateway web framework with Prisma</p>
+          <h3>Thunder</h3>
+          <p>A Minimalist Backend Framework in Go — a gRPC-Gateway-powered framework with Prisma, Kubernetes, and Go for scalable microservices.</p>
         </div>
-    </a>
-</div>
+      </a>
+    </div>
+  </section>
 
-            </div>
-        </div>
-    </section>
+  <section id="about" class="about fade-in">
+    <h2>ABOUT ME</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      I'm Kamil Mościszko, a backend engineer focused on building efficient, reliable, and scalable systems in Go. My projects reflect my passion for clean architecture and developer-centric tools:
+    </p>
+    <p style="text-align:center; max-width:700px; margin:2rem auto 0;">
+      With <span class="accent-text">MemoryArena</span>, I tackled Go's garbage collector head-on, building a high-speed memory pool for bulk allocation.
+      <br /><br />
+      Through <span class="accent-text">GoEventBus</span>, I brought event sourcing to the Go ecosystem with testability and simplicity as top priorities.
+      <br /><br />
+      And with <span class="accent-text">Thunder</span>, I created a minimalist yet powerful backend framework that merges gRPC, Prisma, and Kubernetes for scalable microservices.
+    </p>
+    <p style="text-align:center; max-width:700px; margin:2rem auto 0;">
+      I engineer tools that serve developers, constantly experimenting with better ways to build APIs, systems, and infrastructure.
+    </p>
+    <div class="skills">
+      <span class="skill-tag">Go</span>
+      <span class="skill-tag">gRPC</span>
+      <span class="skill-tag">WebSockets</span>
+      <span class="skill-tag">Prisma</span>
+      <span class="skill-tag">PostgreSQL</span>
+      <span class="skill-tag">Concurrency</span>
+      <span class="skill-tag">Event Sourcing</span>
+      <span class="skill-tag">Open Source</span>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text fade-in">
-<h2>About Me</h2>
-<p>I'm Kamil Mościszko, a passionate Golang developer focused on performance, concurrency, and modern backend architecture. I enjoy building fast, reliable systems and open-source tools that solve real-world problems.</p>
-<p>I've created projects such as <strong>MemoryArena</strong> (a high-performance memory pool), <strong>GoEventBus</strong> (a Go idiomatic event-sourcing library), and <strong>Thunder</strong> (a minimalist gRPC-Gateway framework with WebSocket support). I love working at the intersection of developer experience and system efficiency.</p>
-<p>My strengths include building scalable APIs, designing low-latency systems, and contributing to open-source infrastructure libraries.</p>
-<div class="skills">
-    <span class="skill-tag">Golang</span>
-    <span class="skill-tag">gRPC</span>
-    <span class="skill-tag">WebSockets</span>
-    <span class="skill-tag">Prisma</span>
-    <span class="skill-tag">PostgreSQL</span>
-    <span class="skill-tag">Concurrency</span>
-    <span class="skill-tag">Event Sourcing</span>
-    <span class="skill-tag">Open Source</span>
-</div>
+  <footer id="contact">
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/kamilm97/" class="social-link" target="_blank"><span>in</span></a>
+      <a href="https://github.com/Raezil" class="social-link" target="_blank"><span>GH</span></a>
+    </div>
+    <p>&copy; 2025 Kamil Mościszko. All rights reserved.</p>
+  </footer>
 
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+    // Fade-in animation on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in');
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-<a href="https://www.linkedin.com/in/kamilm97/" class="social-link" target="_blank" rel="noopener noreferrer">in</a>
-            </div>
-            <p>&copy; 2025 Kamil Mościszko. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Simple fade-in animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, {threshold: 0.3});
-            
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
         });
-    </script>
+      }, { threshold: 0.2 });
+
+      fadeElements.forEach(el => observer.observe(el));
+      
+      // Matrix digital rain effect
+      const canvas = document.getElementById('matrixRain');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const columns = Math.floor(canvas.width / 20);
+      const drops = [];
+      
+      for(let i = 0; i < columns; i++) {
+        drops[i] = Math.floor(Math.random() * canvas.height);
+      }
+      
+      const matrix = () => {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#ff0044';
+        ctx.font = '15px monospace';
+        
+        for(let i = 0; i < drops.length; i++) {
+          const text = String.fromCharCode(Math.floor(Math.random() * 128));
+          ctx.fillText(text, i * 20, drops[i] * 20);
+          
+          if(drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          drops[i]++;
+        }
+      };
+      
+      setInterval(matrix, 50);
+      
+      // Resize canvas on window resize
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    });
+  </script>
 </body>
 </html>
