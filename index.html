@@ -46,6 +46,7 @@
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
+      align-items: center;
       z-index: 1000;
       border-bottom: 1px solid rgba(255, 0, 68, 0.3);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -117,6 +118,23 @@
     .nav-links a:hover::after {
       width: 100%;
     }
+    
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+    }
+    
+    .menu-toggle span {
+      height: 3px;
+      width: 100%;
+      background-color: var(--text);
+      transition: all 0.3s ease;
+    }
 
     header.hero {
       display: flex;
@@ -186,6 +204,8 @@
       overflow: hidden;
       font-family: 'Orbitron', sans-serif;
       box-shadow: 0 0 15px var(--accent-glow);
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn::before {
@@ -482,6 +502,99 @@
     @keyframes blink {
       50% { border-color: transparent; }
     }
+
+    /* Mobile responsive styles */
+    @media (max-width: 992px) {
+      .work-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem 0;
+        gap: 1rem;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        border-bottom: 1px solid var(--accent);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      section {
+        padding: 6rem 1.5rem;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-item:hover {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+      }
+
+      .work-overlay h3 {
+        font-size: 1.4rem;
+      }
+
+      .work-overlay p {
+        font-size: 1rem;
+      }
+
+      .terminal-line {
+        white-space: normal;
+        animation: none;
+        border-right: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -489,7 +602,12 @@
 
   <nav>
     <div class="logo">KAMIL<span>.M</span></div>
-    <ul class="nav-links">
+    <div class="menu-toggle" id="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
@@ -566,7 +684,25 @@
     // Fade-in animation on scroll
     document.addEventListener('DOMContentLoaded', () => {
       const fadeElements = document.querySelectorAll('.fade-in');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const navLinks = document.getElementById('nav-links');
+      const navLinksItems = document.querySelectorAll('.nav-links a');
 
+      // Mobile menu toggle
+      mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking a link
+      navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          mobileMenu.classList.remove('active');
+        });
+      });
+
+      // Intersection Observer for fade-in elements
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -581,8 +717,13 @@
       const canvas = document.getElementById('matrixRain');
       const ctx = canvas.getContext('2d');
       
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Set canvas to full viewport
+      const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+      
+      resizeCanvas();
       
       const columns = Math.floor(canvas.width / 20);
       const drops = [];
@@ -614,8 +755,7 @@
       
       // Resize canvas on window resize
       window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        resizeCanvas();
       });
     });
   </script>
