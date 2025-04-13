@@ -1,763 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kamil Mościszko | Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-    :root {
-      --main-dark: #080808;
-      --accent: #ff0044;
-      --accent-glow: rgba(255, 0, 68, 0.5);
-      --secondary: #00eeff;
-      --text: #f0f0f0;
-      --gray: #111111;
-      --light-gray: #222222;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Rajdhani', sans-serif;
-    }
-
-    body {
-      background: #000;
-      color: var(--text);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255, 0, 68, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(0, 238, 255, 0.05) 0%, transparent 20%),
-        linear-gradient(180deg, #080808 0%, #000 100%);
-      background-attachment: fixed;
-    }
-
-    nav {
-      position: fixed;
-      width: 100%;
-      padding: 1.5rem 2rem;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 0, 68, 0.3);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .logo::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      animation: scanline 2s linear infinite;
-    }
-
-    @keyframes scanline {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    .logo span {
-      color: var(--accent);
-      text-shadow: 0 0 10px var(--accent-glow);
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-      letter-spacing: 1px;
-      position: relative;
-      padding: 5px 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-      text-shadow: 0 0 5px var(--accent-glow);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-    
-    /* Mobile menu */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-      cursor: pointer;
-    }
-    
-    .menu-toggle span {
-      height: 3px;
-      width: 100%;
-      background-color: var(--text);
-      transition: all 0.3s ease;
-    }
-
-    header.hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 0 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background: radial-gradient(circle at center, transparent 0%, #000 70%);
-      z-index: -1;
-    }
-
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 4.5rem;
-      background: linear-gradient(90deg, var(--secondary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      letter-spacing: 3px;
-      position: relative;
-      text-shadow: 0 0 20px rgba(255, 0, 68, 0.5);
-      animation: glitch 5s infinite;
-    }
-
-    @keyframes glitch {
-      0%, 90%, 100% { transform: translate(0); }
-      92% { transform: translate(-2px, 2px); }
-      94% { transform: translate(2px, -2px); }
-      96% { transform: translate(-1px, -1px); }
-      98% { transform: translate(1px, 1px); }
-    }
-
-    .hero p {
-      font-size: 1.4rem;
-      max-width: 700px;
-      color: #aaa;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .btn {
-      padding: 1rem 2.5rem;
-      background: transparent;
-      color: white;
-      font-weight: bold;
-      border: 2px solid var(--accent);
-      border-radius: 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-      font-family: 'Orbitron', sans-serif;
-      box-shadow: 0 0 15px var(--accent-glow);
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 0, 68, 0.4), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 25px var(--accent);
-      background: var(--accent);
-      color: black;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    section {
-      padding: 8rem 3rem;
-      position: relative;
-    }
-
-    section h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      letter-spacing: 2px;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    section h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .work-item {
-      background: rgba(15, 15, 15, 0.9);
-      overflow: hidden;
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid #222;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--text);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .work-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-      z-index: 0;
-    }
-
-    .work-item:hover {
-      transform: translateY(-15px) scale(1.02);
-      border-color: var(--accent);
-      box-shadow: 0 15px 30px rgba(255, 0, 68, 0.2);
-    }
-
-    .work-item:hover::before {
-      opacity: 0.1;
-    }
-
-    .work-overlay {
-      padding: 2rem;
-      position: relative;
-      z-index: 1;
-      border-left: 3px solid var(--accent);
-    }
-
-    .work-overlay h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
-
-    .work-overlay p {
-      font-size: 1.1rem;
-      color: #bbb;
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    .about {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 3rem;
-      justify-content: center;
-    }
-
-    .skill-tag {
-      padding: 8px 16px;
-      background: rgba(17, 17, 17, 0.8);
-      font-weight: bold;
-      transition: all 0.3s;
-      border: 1px solid #333;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-tag::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent);
-      transition: width 0.3s;
-    }
-
-    .skill-tag:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
-    }
-
-    .skill-tag:hover::before {
-      width: 100%;
-      opacity: 0.2;
-    }
-
-    footer {
-      padding: 3rem;
-      background: rgba(8, 8, 8, 0.9);
-      text-align: center;
-      border-top: 1px solid #222;
-      position: relative;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .social-link {
-      width: 50px;
-      height: 50px;
-      background: var(--gray);
-      border-radius: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      color: white;
-      transition: all 0.3s;
-      border: 1px solid #333;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-link::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 0;
-      background: var(--accent);
-      transition: height 0.3s;
-      z-index: 0;
-    }
-
-    .social-link span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .social-link:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
-    }
-
-    .social-link:hover::before {
-      height: 100%;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .fade-in.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Matrix digital rain effect */
-    .matrix-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -5;
-      opacity: 0.07;
-      pointer-events: none;
-    }
-
-    /* Glowing effect for accent text */
-    .accent-text {
-      color: var(--accent);
-      text-shadow: 0 0 5px var(--accent-glow);
-      font-weight: 600;
-    }
-
-    /* Animated border for sections */
-    .border-glow {
-      position: relative;
-    }
-
-    .border-glow::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      border: 2px solid var(--accent);
-      opacity: 0;
-      transition: opacity 0.3s;
-      z-index: -1;
-    }
-
-    .border-glow:hover::after {
-      opacity: 1;
-    }
-
-    /* Terminal typing effect */
-    .terminal-line {
-      border-right: 2px solid var(--accent);
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: fit-content;
-      margin: 0 auto;
-      animation: typing 4s steps(60) 1s 1 normal both, blink 1s steps(1) infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    /* Mobile responsive styles */
-    @media (max-width: 992px) {
-      .work-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        background: rgba(0, 0, 0, 0.95);
-        padding: 1rem 0;
-        gap: 1rem;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease;
-        border-bottom: 1px solid var(--accent);
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      section {
-        padding: 6rem 1.5rem;
-      }
-
-      section h2 {
-        font-size: 2rem;
-      }
-
-      .work-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .work-item:hover {
-        transform: translateY(-5px);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .btn {
-        padding: 0.8rem 1.8rem;
-        font-size: 0.9rem;
-      }
-
-      section h2 {
-        font-size: 1.8rem;
-      }
-
-      .work-overlay h3 {
-        font-size: 1.4rem;
-      }
-
-      .work-overlay p {
-        font-size: 1rem;
-      }
-
-      .terminal-line {
-        white-space: normal;
-        animation: none;
-        border-right: none;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamil Mosciszko | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Custom CSS --- */
+        :root {
+            --main-dark: #080808;
+            --accent: #ff0044; /* Hot pink/red accent */
+            --accent-glow: rgba(255, 0, 68, 0.5);
+            --secondary: #00eeff; /* Cyan secondary color */
+            --text: #f0f0f0; /* Light text color */
+            --gray: #111111;
+            --light-gray: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: var(--text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 68, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 238, 255, 0.05) 0%, transparent 20%),
+                linear-gradient(180deg, #080808 0%, #000 100%);
+            background-attachment: fixed;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 0, 68, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Updated Logo Style */
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            color: var(--text); /* Ensure base color is set */
+            /* Added subtle shadow to base text */
+            text-shadow: 0 0 5px rgba(0, 238, 255, 0.2); /* Faint cyan glow */
+            transition: filter 0.3s ease; /* Transition for hover effect */
+        }
+
+        /* Logo Hover Effect */
+        .logo:hover {
+            filter: brightness(1.2); /* Slightly brighten on hover */
+        }
+
+        /* Updated Scanline Animation */
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            /* Slowed down animation */
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { left: -100%; }
+            50% { left: 100%; } /* Ensure it fully crosses */
+            100% { left: 100%; } /* Keep it off-screen before restart */
+        }
+
+        /* Updated Logo Span Style */
+        .logo span {
+            color: var(--accent);
+            /* Enhanced glow effect */
+            text-shadow: 0 0 20px var(--accent-glow), 0 0 10px var(--accent);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent-glow);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Mobile Menu --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--text);
+            transition: all 0.3s ease;
+            border-radius: 1px;
+        }
+
+         .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* --- Hero Section --- */
+        header.hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at center, transparent 0%, #000 70%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            position: relative;
+            text-shadow: 0 0 20px rgba(255, 0, 68, 0.5);
+            animation: glitch 5s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-1px, -1px); }
+            98% { transform: translate(1px, 1px); }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            color: #aaa;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* --- Button Styling --- */
+        .btn {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: white;
+            font-weight: bold;
+            border: 2px solid var(--accent);
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 15px var(--accent-glow);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 68, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--accent);
+            background: var(--accent);
+            color: black;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+        }
+
+        section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            max-width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        /* --- Work/Projects Section --- */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .work-item {
+            background: rgba(15, 15, 15, 0.9);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #222;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .work-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+        }
+
+        .work-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(255, 0, 68, 0.2);
+        }
+
+        .work-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .work-overlay {
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            border-left: 3px solid var(--accent);
+        }
+
+        .work-overlay h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .work-overlay p {
+            font-size: 1.1rem;
+            color: #bbb;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- About Section --- */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+             line-height: 1.7;
+             font-weight: 300;
+             color: #bbb;
+        }
+
+        /* --- Skills Section --- */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(17, 17, 17, 0.8);
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s, opacity 0.3s;
+            opacity: 0.7;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
+             border-color: rgba(255, 0, 68, 0.5);
+        }
+
+        .skill-tag:hover::before {
+            width: 100%;
+            opacity: 0.2;
+        }
+
+        /* --- Experience Timeline Section --- */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: var(--light-gray);
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            margin-left: -1.5px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.3);
+        }
+
+        .timeline-item {
+            padding: 10px 0 10px 70px;
+            position: relative;
+            background: transparent;
+            margin-bottom: 40px;
+        }
+
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--accent);
+            border: 3px solid var(--gray);
+            top: 15px;
+            left: 23px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid #222;
+            position: relative;
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(255, 0, 68, 0.2);
+            border-color: var(--accent);
+        }
+
+        .timeline-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .timeline-content h4 {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 15px;
+            font-weight: 300;
+            display: block;
+        }
+
+        .timeline-description {
+            font-size: 1rem;
+            color: #bbb;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem;
+            background: rgba(8, 8, 8, 0.9);
+            text-align: center;
+            border-top: 1px solid #222;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--gray);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            transition: all 0.3s;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.3s;
+            z-index: 0;
+        }
+
+        .social-link span {
+            position: relative;
+            z-index: 1;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
+        }
+
+        .social-link:hover::before {
+            height: 100%;
+        }
+
+        /* --- Fade-in Animation --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Matrix Background --- */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        /* --- Helper Classes --- */
+        .accent-text {
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent-glow);
+            font-weight: 600;
+        }
+
+        .border-glow {
+            position: relative;
+        }
+
+        /* --- Terminal Typing Effect --- */
+        .terminal-line {
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: fit-content;
+            margin: 0 auto;
+            animation: typing 3s steps(45) 1s 1 normal both, blink 0.8s steps(1) infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .work-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+             .hero h1 { font-size: 3.5rem; }
+             .hero p { font-size: 1.2rem; }
+             .timeline { max-width: 100%; padding: 0 10px; }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+             /* Adjust logo size for smaller screens */
+            .logo { font-size: 1.6rem; }
+
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 65px; /* Adjust if nav padding changed */
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.98);
+                padding: 1rem 0;
+                gap: 1.5rem;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                border-bottom: 1px solid var(--accent);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 6rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+            section h2::after {
+                 width: 80px;
+            }
+
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item:hover {
+                transform: translateY(-5px) scale(1.01);
+            }
+            .terminal-line {
+                 white-space: normal;
+                 animation: none;
+                 border-right: none;
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+            .timeline-item {
+                padding-left: 50px;
+            }
+            .timeline-dot {
+                left: 13px;
+                width: 12px;
+                height: 12px;
+            }
+            .timeline-content {
+                padding: 15px 20px;
+            }
+             .timeline-content h3 { font-size: 1.2rem; }
+             .timeline-content h4 { font-size: 1rem; }
+             .timeline-date { font-size: 0.8rem; }
+             .timeline-description { font-size: 0.9rem; }
+        }
+
+        @media (max-width: 480px) {
+             nav { padding: 1rem; } /* Further reduce nav padding */
+             .logo { font-size: 1.4rem; } /* Further reduce logo size */
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+             section h2::after {
+                 width: 60px;
+            }
+
+            .work-overlay h3 {
+                font-size: 1.4rem;
+            }
+
+            .work-overlay p {
+                font-size: 1rem;
+            }
+
+             .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            .timeline::after {
+                left: 15px;
+            }
+            .timeline-item {
+                padding-left: 40px;
+            }
+            .timeline-dot {
+                left: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <canvas id="matrixRain" class="matrix-bg"></canvas>
+    <canvas id="matrixRain" class="matrix-bg"></canvas>
 
-  <nav>
-    <div class="logo">KAMIL<span>.M</span></div>
-    <div class="menu-toggle" id="mobile-menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header id="home" class="hero">
-    <h1>KAMIL MOŚCISZKO</h1>
-    <p class="terminal-line">Backend Developer crafting <span class="accent-text">scalable systems</span>, <span class="accent-text">fast APIs</span>, and open-source tools in Golang.</p>
-    <a href="#work" class="btn">EXPLORE MY WORK</a>
-  </header>
-
-  <section id="work">
-    <h2>FEATURED PROJECTS</h2>
-    <div class="work-grid">
-      <a class="work-item border-glow fade-in" href="https://github.com/Raezil/memoryArena" target="_blank">
-        <div class="work-overlay">
-          <h3>MemoryArena</h3>
-          <p>High-performance memory pool library for Go, enabling fast bulk allocations with a focus on reducing GC overhead in high-throughput systems.</p>
+    <nav>
+        <div class="logo">KAMIL<span>.M</span></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-      </a>
-      <a class="work-item border-glow fade-in" href="https://github.com/Raezil/GoEventBus" target="_blank">
-        <div class="work-overlay">
-          <h3>GoEventBus</h3>
-          <p>Event-driven framework for Go built with simplicity and testability in mind, offering 82% test coverage and seamless integration with domain-driven design patterns.</p>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <h1>KAMIL MOSCISZKO</h1>
+        <p class="terminal-line">Open Source Golang Developer crafting <span class="accent-text">scalable systems</span> & <span class="accent-text">efficient tools</span>.</p>
+        <a href="#work" class="btn">EXPLORE MY WORK</a>
+    </header>
+
+    <section id="about" class="about fade-in">
+        <h2>ABOUT ME</h2>
+        <p>
+            I'm Kamil Mosciszko, an Open Source Developer focused on Golang. With a deep understanding of Go's elegant syntax and powerful standard library, I leverage its built-in concurrency mechanisms like <span class="accent-text">goroutines</span> and <span class="accent-text">channels</span>.
+        </p>
+        <p style="margin-top: 1.5rem;">
+            My passion lies in Go's philosophy of <span class="accent-text">simplicity</span> and <span class="accent-text">efficiency</span>, driving my approach to writing clean, maintainable, and reliable code for projects like Thunder, GoEventBus, and MemoryArena. I enjoy building developer-centric tools and exploring better ways to create APIs and systems.
+        </p>
+        <div class="skills">
+            <span class="skill-tag">Go (Golang)</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">gRPC</span>
+            <span class="skill-tag">GraphQL</span>
+            <span class="skill-tag">Gin</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">NoSQL</span>
+            <span class="skill-tag">Event Sourcing</span>
+            <span class="skill-tag">Microservices</span>
+            <span class="skill-tag">Concurrency</span>
+            <span class="skill-tag">Memory Management</span>
+            <span class="skill-tag">Open Source</span>
+            <span class="skill-tag">Git</span>
         </div>
-      </a>
-      <a class="work-item border-glow fade-in" href="https://github.com/Raezil/Thunder" target="_blank">
-        <div class="work-overlay">
-          <h3>Thunder</h3>
-          <p>A Minimalist Backend Framework in Go — a gRPC-Gateway-powered framework with Prisma, Kubernetes, and Go for scalable microservices.</p>
+    </section>
+
+    <section id="experience">
+        <h2>EXPERIENCE</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>EPAM Systems</h3>
+                    <h4>Software Engineer</h4>
+                    <span class="timeline-date">June 2022 - September 2022</span>
+                    <p class="timeline-description">
+                        Contributed to the development and maintenance of backend systems using Ruby on Rails.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>intive</h3>
+                    <h4>Junior Software Engineer</h4>
+                    <span class="timeline-date">November 2021 - May 2022</span>
+                    <p class="timeline-description">
+                        Gained hands-on experience in Golang development, focusing on building and testing backend services.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Monterail</h3>
+                    <h4>RoR Developer</h4>
+                    <span class="timeline-date">May 2021 - September 2021</span>
+                    <p class="timeline-description">
+                        Worked with Ruby on Rails and GraphQL to develop and maintain web applications, focusing on API development.
+                    </p>
+                </div>
+            </div>
         </div>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  <section id="about" class="about fade-in">
-    <h2>ABOUT ME</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      I'm Kamil Mościszko, a backend engineer focused on building efficient, reliable, and scalable systems in Go. My projects reflect my passion for clean architecture and developer-centric tools:
-    </p>
-    <p style="text-align:center; max-width:700px; margin:2rem auto 0;">
-      With <span class="accent-text">MemoryArena</span>, I tackled Go's garbage collector head-on, building a high-speed memory pool for bulk allocation.
-      <br /><br />
-      Through <span class="accent-text">GoEventBus</span>, I brought event sourcing to the Go ecosystem with testability and simplicity as top priorities.
-      <br /><br />
-      And with <span class="accent-text">Thunder</span>, I created a minimalist yet powerful backend framework that merges gRPC, Prisma, and Kubernetes for scalable microservices.
-    </p>
-    <p style="text-align:center; max-width:700px; margin:2rem auto 0;">
-      I engineer tools that serve developers, constantly experimenting with better ways to build APIs, systems, and infrastructure.
-    </p>
-    <div class="skills">
-      <span class="skill-tag">Go</span>
-      <span class="skill-tag">gRPC</span>
-      <span class="skill-tag">WebSockets</span>
-      <span class="skill-tag">Prisma</span>
-      <span class="skill-tag">PostgreSQL</span>
-      <span class="skill-tag">Concurrency</span>
-      <span class="skill-tag">Event Sourcing</span>
-      <span class="skill-tag">Open Source</span>
-    </div>
-  </section>
+    <section id="work">
+        <h2>FEATURED PROJECTS</h2>
+        <div class="work-grid">
+            <a class="work-item border-glow fade-in" href="https://github.com/Raezil/Thunder" target="_blank" rel="noopener noreferrer">
+                <div class="work-overlay">
+                    <h3>Thunder</h3>
+                    <p>A Minimalist Backend Framework in Go — a gRPC-Gateway-powered framework with Prisma, Kubernetes, and Go for scalable microservices.</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--secondary);">Technologies: Golang, gRPC, Prisma, Kubernetes</p>
+                </div>
+            </a>
+            <a class="work-item border-glow fade-in" href="https://github.com/Raezil/GoEventBus" target="_blank" rel="noopener noreferrer">
+                <div class="work-overlay">
+                    <h3>GoEventBus</h3>
+                    <p>Lightweight, high-performance event sourcing library enabling asynchronous event-driven communication between services.</p>
+                     <p style="margin-top: 10px; font-size: 0.9rem; color: var(--secondary);">Technologies: Golang, Event Sourcing, Microservices</p>
+                </div>
+            </a>
+            <a class="work-item border-glow fade-in" href="https://github.com/Raezil/memoryArena" target="_blank" rel="noopener noreferrer">
+                <div class="work-overlay">
+                    <h3>MemoryArena</h3>
+                    <p>Golang package consolidating memory allocations into a single area, simplifying management and enhancing efficiency.</p>
+                     <p style="margin-top: 10px; font-size: 0.9rem; color: var(--secondary);">Technologies: Golang, Custom Memory Management</p>
+                </div>
+            </a>
+        </div>
+    </section>
 
-  <footer id="contact">
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/kamilm97/" class="social-link" target="_blank"><span>in</span></a>
-      <a href="https://github.com/Raezil" class="social-link" target="_blank"><span>GH</span></a>
-    </div>
-    <p>&copy; 2025 Kamil Mościszko. All rights reserved.</p>
-  </footer>
+    <footer id="contact">
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/kamilm97/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span>in</span></a>
+            <a href="https://github.com/Raezil" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span>GH</span></a>
+            <a href="mailto:kmosc@protonmail.com" class="social-link" aria-label="Email"><span>@</span></a>
+        </div>
+        <p>&copy; 2025 Kamil Mosciszko. All rights reserved.</p>
+         <p style="font-size: 0.8rem; color: #555; margin-top: 1rem;">Location: Wroclaw, Poland</p>
+    </footer>
 
-  <script>
-    // Fade-in animation on scroll
-    document.addEventListener('DOMContentLoaded', () => {
-      const fadeElements = document.querySelectorAll('.fade-in');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const navLinks = document.getElementById('nav-links');
-      const navLinksItems = document.querySelectorAll('.nav-links a');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const canvas = document.getElementById('matrixRain');
+            const ctx = canvas.getContext('2d');
 
-      // Mobile menu toggle
-      mobileMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-      });
+            // --- Mobile Menu Toggle ---
+            mobileMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
 
-      // Close mobile menu when clicking a link
-      navLinksItems.forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('active');
-          mobileMenu.classList.remove('active');
+            // --- Close Mobile Menu on Link Click & Smooth Scroll ---
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    if (navLinks.classList.contains('active')) {
+                         navLinks.classList.remove('active');
+                         mobileMenu.classList.remove('active');
+                    }
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                         event.preventDefault();
+                         const targetElement = document.querySelector(targetId);
+                         if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                         }
+                    }
+                });
+            });
+
+             // --- Intersection Observer for Fade-in Elements ---
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            // --- Matrix Digital Rain Effect ---
+            let animationFrameId;
+
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                columns = Math.floor(canvas.width / 20);
+                drops = [];
+                for(let i = 0; i < columns; i++) {
+                    drops[i] = Math.floor(Math.random() * canvas.height / 20);
+                }
+            };
+
+            let columns;
+            let drops = [];
+            resizeCanvas();
+
+            const matrix = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ff0044';
+                ctx.font = '15px monospace';
+
+                for(let i = 0; i < drops.length; i++) {
+                    const text = String.fromCharCode(Math.floor(Math.random() * 94) + 33);
+                    ctx.fillText(text, i * 20, drops[i] * 20);
+                    if(drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+                 animationFrameId = requestAnimationFrame(matrix);
+            };
+
+            matrix();
+
+            // --- Resize Handling ---
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                 clearTimeout(resizeTimer);
+                 resizeTimer = setTimeout(() => {
+                    cancelAnimationFrame(animationFrameId);
+                    resizeCanvas();
+                    matrix();
+                 }, 250);
+            });
         });
-      });
-
-      // Intersection Observer for fade-in elements
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      }, { threshold: 0.2 });
-
-      fadeElements.forEach(el => observer.observe(el));
-      
-      // Matrix digital rain effect
-      const canvas = document.getElementById('matrixRain');
-      const ctx = canvas.getContext('2d');
-      
-      // Set canvas to full viewport
-      const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      };
-      
-      resizeCanvas();
-      
-      const columns = Math.floor(canvas.width / 20);
-      const drops = [];
-      
-      for(let i = 0; i < columns; i++) {
-        drops[i] = Math.floor(Math.random() * canvas.height);
-      }
-      
-      const matrix = () => {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#ff0044';
-        ctx.font = '15px monospace';
-        
-        for(let i = 0; i < drops.length; i++) {
-          const text = String.fromCharCode(Math.floor(Math.random() * 128));
-          ctx.fillText(text, i * 20, drops[i] * 20);
-          
-          if(drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          
-          drops[i]++;
-        }
-      };
-      
-      setInterval(matrix, 50);
-      
-      // Resize canvas on window resize
-      window.addEventListener('resize', () => {
-        resizeCanvas();
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
