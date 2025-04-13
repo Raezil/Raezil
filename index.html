@@ -1,580 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kamil Mosciszko | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
     <style>
-        /* --- Custom CSS --- */
-        :root {
-            --main-dark: #080808;
-            --accent: #ff0044; /* Hot pink/red accent */
-            --accent-glow: rgba(255, 0, 68, 0.5);
-            --secondary: #00eeff; /* Cyan secondary color */
-            --text: #f0f0f0; /* Light text color */
-            --gray: #111111;
-            --light-gray: #222222;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Rajdhani', sans-serif;
-        }
-
+        /* Custom styles for specific elements if needed, though Tailwind is preferred */
         body {
-            background: #000;
-            color: var(--text);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            background-image:
-                radial-gradient(circle at 10% 20%, rgba(255, 0, 68, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 238, 255, 0.05) 0%, transparent 20%),
-                linear-gradient(180deg, #080808 0%, #000 100%);
-            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind's slate-50 */
+            color: #334155; /* Tailwind's slate-700 */
         }
 
-        /* --- Navigation Bar --- */
-        nav {
-            position: fixed;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 0, 68, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Updated Logo Style */
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-            color: var(--text); /* Ensure base color is set */
-            /* Added subtle shadow to base text */
-            text-shadow: 0 0 5px rgba(0, 238, 255, 0.2); /* Faint cyan glow */
-            transition: filter 0.3s ease; /* Transition for hover effect */
-        }
-
-        /* Logo Hover Effect */
-        .logo:hover {
-            filter: brightness(1.2); /* Slightly brighten on hover */
-        }
-
-        /* Updated Scanline Animation */
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            /* Slowed down animation */
-            animation: scanline 3s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { left: -100%; }
-            50% { left: 100%; } /* Ensure it fully crosses */
-            100% { left: 100%; } /* Keep it off-screen before restart */
-        }
-
-        /* Updated Logo Span Style */
-        .logo span {
-            color: var(--accent);
-            /* Enhanced glow effect */
-            text-shadow: 0 0 20px var(--accent-glow), 0 0 10px var(--accent);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            letter-spacing: 1px;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 5px var(--accent-glow);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* --- Mobile Menu --- */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer;
-        }
-
+        /* Style for the mobile menu icon animation */
         .menu-toggle span {
+            display: block;
+            width: 25px;
             height: 3px;
-            width: 100%;
-            background-color: var(--text);
-            transition: all 0.3s ease;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background-color: #334155; /* slate-700 */
             border-radius: 1px;
         }
 
-         .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
         }
+
         .menu-toggle.active span:nth-child(2) {
             opacity: 0;
         }
+
         .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
+            transform: translateY(-8px) rotate(-45deg);
         }
 
-        /* --- Hero Section --- */
-        header.hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            padding: 0 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle at center, transparent 0%, #000 70%);
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: 3px;
-            position: relative;
-            text-shadow: 0 0 20px rgba(255, 0, 68, 0.5);
-            animation: glitch 5s infinite;
-        }
-
-        @keyframes glitch {
-            0%, 90%, 100% { transform: translate(0); }
-            92% { transform: translate(-2px, 2px); }
-            94% { transform: translate(2px, -2px); }
-            96% { transform: translate(-1px, -1px); }
-            98% { transform: translate(1px, 1px); }
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            color: #aaa;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        /* --- Button Styling --- */
-        .btn {
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: white;
-            font-weight: bold;
-            border: 2px solid var(--accent);
-            border-radius: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 0 15px var(--accent-glow);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 0, 68, 0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px var(--accent);
-            background: var(--accent);
-            color: black;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        /* --- Section Styling --- */
-        section {
-            padding: 8rem 3rem;
-            position: relative;
-        }
-
-        section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            letter-spacing: 2px;
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            max-width: 80%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        /* --- Work/Projects Section --- */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .work-item {
-            background: rgba(15, 15, 15, 0.9);
-            overflow: hidden;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #222;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--text);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .work-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 0;
-        }
-
-        .work-item:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 15px 30px rgba(255, 0, 68, 0.2);
-        }
-
-        .work-item:hover::before {
-            opacity: 0.1;
-        }
-
-        .work-overlay {
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-            border-left: 3px solid var(--accent);
-        }
-
-        .work-overlay h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-            letter-spacing: 1px;
-        }
-
-        .work-overlay p {
-            font-size: 1.1rem;
-            color: #bbb;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* --- About Section --- */
-        .about {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .about p {
-             line-height: 1.7;
-             font-weight: 300;
-             color: #bbb;
-        }
-
-        /* --- Skills Section --- */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 3rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            padding: 8px 16px;
-            background: rgba(17, 17, 17, 0.8);
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 1px solid #333;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .skill-tag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--accent);
-            transition: width 0.3s, opacity 0.3s;
-            opacity: 0.7;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
-             border-color: rgba(255, 0, 68, 0.5);
-        }
-
-        .skill-tag:hover::before {
-            width: 100%;
-            opacity: 0.2;
-        }
-
-        /* --- Experience Timeline Section --- */
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 3px;
-            background: var(--light-gray);
-            top: 0;
-            bottom: 0;
-            left: 30px;
-            margin-left: -1.5px;
-            box-shadow: 0 0 10px rgba(0, 238, 255, 0.3);
-        }
-
-        .timeline-item {
-            padding: 10px 0 10px 70px;
-            position: relative;
-            background: transparent;
-            margin-bottom: 40px;
-        }
-
-        .timeline-dot {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: var(--accent);
-            border: 3px solid var(--gray);
-            top: 15px;
-            left: 23px;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .timeline-content {
-            padding: 20px 30px;
-            background: rgba(15, 15, 15, 0.9);
-            border: 1px solid #222;
-            position: relative;
-            border-left: 3px solid var(--accent);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(255, 0, 68, 0.2);
-            border-color: var(--accent);
-        }
-
-        .timeline-content h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--secondary);
-            margin-bottom: 5px;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .timeline-content h4 {
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .timeline-date {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 15px;
-            font-weight: 300;
-            display: block;
-        }
-
-        .timeline-description {
-            font-size: 1rem;
-            color: #bbb;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 3rem;
-            background: rgba(8, 8, 8, 0.9);
-            text-align: center;
-            border-top: 1px solid #222;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--gray);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: white;
-            transition: all 0.3s;
-            border: 1px solid #333;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: var(--accent);
-            transition: height 0.3s;
-            z-index: 0;
-        }
-
-        .social-link span {
-            position: relative;
-            z-index: 1;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 5px 15px rgba(255, 0, 68, 0.3);
-        }
-
-        .social-link:hover::before {
-            height: 100%;
-        }
-
-        /* --- Fade-in Animation --- */
+        /* Simple fade-in animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         .fade-in.active {
@@ -582,417 +52,290 @@
             transform: translateY(0);
         }
 
-        /* --- Matrix Background --- */
-        .matrix-bg {
-            position: fixed;
+        /* Subtle glow for accent text */
+        .accent-glow {
+             text-shadow: 0 0 8px rgba(37, 99, 235, 0.3); /* blue-600 glow */
+        }
+
+        /* Timeline vertical line */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #e2e8f0; /* slate-200 */
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -5;
-            opacity: 0.07;
-            pointer-events: none;
+            bottom: 0;
+            left: 1.25rem; /* Corresponds to pl-10 on timeline-item */
+            margin-left: -1px;
+            z-index: 0;
         }
-
-        /* --- Helper Classes --- */
-        .accent-text {
-            color: var(--accent);
-            text-shadow: 0 0 5px var(--accent-glow);
-            font-weight: 600;
-        }
-
-        .border-glow {
-            position: relative;
-        }
-
-        /* --- Terminal Typing Effect --- */
-        .terminal-line {
-            border-right: 2px solid var(--accent);
-            white-space: nowrap;
-            overflow: hidden;
-            max-width: fit-content;
-            margin: 0 auto;
-            animation: typing 3s steps(45) 1s 1 normal both, blink 0.8s steps(1) infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .work-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-             .hero h1 { font-size: 3.5rem; }
-             .hero p { font-size: 1.2rem; }
-             .timeline { max-width: 100%; padding: 0 10px; }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-             /* Adjust logo size for smaller screens */
-            .logo { font-size: 1.6rem; }
-
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 65px; /* Adjust if nav padding changed */
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                background: rgba(0, 0, 0, 0.98);
-                padding: 1rem 0;
-                gap: 1.5rem;
-                transform: translateY(-150%);
-                transition: transform 0.3s ease-in-out;
-                border-bottom: 1px solid var(--accent);
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            section {
-                padding: 6rem 1.5rem;
-            }
-
-            section h2 {
-                font-size: 2rem;
-            }
-            section h2::after {
-                 width: 80px;
-            }
-
-
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .work-item:hover {
-                transform: translateY(-5px) scale(1.01);
-            }
-            .terminal-line {
-                 white-space: normal;
-                 animation: none;
-                 border-right: none;
-            }
-
+         /* Adjust timeline line position on smaller screens */
+         @media (min-width: 768px) {
             .timeline::after {
-                left: 20px;
+                left: 50%;
             }
-            .timeline-item {
-                padding-left: 50px;
-            }
-            .timeline-dot {
-                left: 13px;
-                width: 12px;
-                height: 12px;
-            }
-            .timeline-content {
-                padding: 15px 20px;
-            }
-             .timeline-content h3 { font-size: 1.2rem; }
-             .timeline-content h4 { font-size: 1rem; }
-             .timeline-date { font-size: 0.8rem; }
-             .timeline-description { font-size: 0.9rem; }
-        }
+         }
 
-        @media (max-width: 480px) {
-             nav { padding: 1rem; } /* Further reduce nav padding */
-             .logo { font-size: 1.4rem; } /* Further reduce logo size */
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .btn {
-                padding: 0.8rem 1.8rem;
-                font-size: 0.9rem;
-            }
-
-            section h2 {
-                font-size: 1.8rem;
-            }
-             section h2::after {
-                 width: 60px;
-            }
-
-            .work-overlay h3 {
-                font-size: 1.4rem;
-            }
-
-            .work-overlay p {
-                font-size: 1rem;
-            }
-
-             .social-link {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
-            .timeline::after {
-                left: 15px;
-            }
-            .timeline-item {
-                padding-left: 40px;
-            }
-            .timeline-dot {
-                left: 8px;
-            }
-        }
     </style>
 </head>
-<body>
-    <canvas id="matrixRain" class="matrix-bg"></canvas>
+<body class="antialiased">
 
-    <nav>
-        <div class="logo">KAMIL<span>.M</span></div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold text-slate-800">
+                        Kamil<span class="text-blue-600">.M</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#home" class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Home</a>
+                    <a href="#about" class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">About</a>
+                    <a href="#experience" class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Experience</a>
+                    <a href="#work" class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Work</a>
+                    <a href="#contact" class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Contact</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="menu-toggle inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-200">
+                <a href="#home" class="text-slate-600 hover:bg-slate-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Home</a>
+                <a href="#about" class="text-slate-600 hover:bg-slate-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">About</a>
+                <a href="#experience" class="text-slate-600 hover:bg-slate-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Experience</a>
+                <a href="#work" class="text-slate-600 hover:bg-slate-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Work</a>
+                <a href="#contact" class="text-slate-600 hover:bg-slate-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Contact</a>
+            </div>
+        </div>
     </nav>
 
-    <header id="home" class="hero">
-        <h1>KAMIL MOSCISZKO</h1>
-        <p class="terminal-line">Open Source Golang Developer crafting <span class="accent-text">scalable systems</span> & <span class="accent-text">efficient tools</span>.</p>
-        <a href="#work" class="btn">EXPLORE MY WORK</a>
+    <header id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-20 px-4 sm:px-6 lg:px-8">
+         <div class="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full opacity-30 -translate-x-16 -translate-y-16 blur-2xl"></div>
+        <div class="absolute bottom-0 right-0 w-72 h-72 bg-cyan-100 rounded-full opacity-30 translate-x-16 translate-y-16 blur-2xl"></div>
+
+        <div class="text-center z-10">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-800 leading-tight mb-4">
+                KAMIL MOSCISZKO
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-8">
+                Open Source Golang Developer crafting <span class="text-blue-600 font-semibold accent-glow">scalable systems</span> & <span class="text-cyan-600 font-semibold accent-glow">efficient tools</span>.
+            </p>
+            <a href="#work" class="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-md shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                EXPLORE MY WORK
+            </a>
+        </div>
     </header>
 
-    <section id="about" class="about fade-in">
-        <h2>ABOUT ME</h2>
-        <p>
-            I'm Kamil Mosciszko, an Open Source Developer focused on Golang. With a deep understanding of Go's elegant syntax and powerful standard library, I leverage its built-in concurrency mechanisms like <span class="accent-text">goroutines</span> and <span class="accent-text">channels</span>.
-        </p>
-        <p style="margin-top: 1.5rem;">
-            My passion lies in Go's philosophy of <span class="accent-text">simplicity</span> and <span class="accent-text">efficiency</span>, driving my approach to writing clean, maintainable, and reliable code for projects like Thunder, GoEventBus, and MemoryArena. I enjoy building developer-centric tools and exploring better ways to create APIs and systems.
-        </p>
-        <div class="skills">
-            <span class="skill-tag">Go (Golang)</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">gRPC</span>
-            <span class="skill-tag">GraphQL</span>
-            <span class="skill-tag">Gin</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">NoSQL</span>
-            <span class="skill-tag">Event Sourcing</span>
-            <span class="skill-tag">Microservices</span>
-            <span class="skill-tag">Concurrency</span>
-            <span class="skill-tag">Memory Management</span>
-            <span class="skill-tag">Open Source</span>
-            <span class="skill-tag">Git</span>
-        </div>
-    </section>
+    <section id="about" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-6">ABOUT ME</h2>
+             <div class="w-20 h-1 bg-blue-600 mx-auto mb-12"></div>
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                I'm Kamil Mosciszko, an Open Source Developer focused on Golang. With a deep understanding of Go's elegant syntax and powerful standard library, I leverage its built-in concurrency mechanisms like <span class="font-semibold text-blue-600">goroutines</span> and <span class="font-semibold text-cyan-600">channels</span>.
+            </p>
+            <p class="text-lg text-slate-600 leading-relaxed mb-12">
+                My passion lies in Go's philosophy of <span class="font-semibold text-blue-600">simplicity</span> and <span class="font-semibold text-cyan-600">efficiency</span>, driving my approach to writing clean, maintainable, and reliable code for projects like Thunder, GoEventBus, and MemoryArena. I enjoy building developer-centric tools and exploring better ways to create APIs and systems.
+            </p>
 
-    <section id="experience">
-        <h2>EXPERIENCE</h2>
-        <div class="timeline">
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>EPAM Systems</h3>
-                    <h4>Software Engineer</h4>
-                    <span class="timeline-date">June 2022 - September 2022</span>
-                    <p class="timeline-description">
-                        Contributed to the development and maintenance of backend systems using Ruby on Rails.
-                    </p>
-                </div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>intive</h3>
-                    <h4>Junior Software Engineer</h4>
-                    <span class="timeline-date">November 2021 - May 2022</span>
-                    <p class="timeline-description">
-                        Gained hands-on experience in Golang development, focusing on building and testing backend services.
-                    </p>
-                </div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Monterail</h3>
-                    <h4>RoR Developer</h4>
-                    <span class="timeline-date">May 2021 - September 2021</span>
-                    <p class="timeline-description">
-                        Worked with Ruby on Rails and GraphQL to develop and maintain web applications, focusing on API development.
-                    </p>
-                </div>
+            <h3 class="text-2xl font-semibold text-slate-700 mb-8">My Skills</h3>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Go (Golang)</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">gRPC</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">GraphQL</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Gin</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Docker</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Kubernetes</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">SQL</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">NoSQL</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Event Sourcing</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Microservices</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Concurrency</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Memory Management</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Open Source</span>
+                <span class="bg-slate-100 text-slate-700 text-sm font-medium px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:bg-slate-200 transition duration-150">Git</span>
             </div>
         </div>
     </section>
 
-    <section id="work">
-        <h2>FEATURED PROJECTS</h2>
-        <div class="work-grid">
-            <a class="work-item border-glow fade-in" href="https://github.com/Raezil/Thunder" target="_blank" rel="noopener noreferrer">
-                <div class="work-overlay">
-                    <h3>Thunder</h3>
-                    <p>A Minimalist Backend Framework in Go — a gRPC-Gateway-powered framework with Prisma, Kubernetes, and Go for scalable microservices.</p>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--secondary);">Technologies: Golang, gRPC, Prisma, Kubernetes</p>
+    <section id="experience" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-6">EXPERIENCE</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto mb-16"></div>
+
+            <div class="relative timeline">
+                <div class="timeline-item mb-12 md:flex md:items-start md:mb-16 fade-in">
+                    <div class="absolute left-5 top-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-50 z-10 md:hidden"></div>
+                    <div class="relative pl-10 md:pl-0 md:w-1/2 md:pr-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 hover:shadow-lg transition duration-300">
+                            <h3 class="text-xl font-semibold text-blue-700 mb-1">EPAM Systems</h3>
+                            <h4 class="text-md font-medium text-slate-600 mb-2">Software Engineer</h4>
+                            <span class="block text-sm text-slate-500 mb-3">June 2022 - September 2022</span>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Contributed to the development and maintenance of backend systems using Ruby on Rails.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hidden md:block absolute left-1/2 top-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-50 z-10 -ml-3"></div>
+                    <div class="hidden md:block md:w-1/2 md:pl-8"></div>
                 </div>
-            </a>
-            <a class="work-item border-glow fade-in" href="https://github.com/Raezil/GoEventBus" target="_blank" rel="noopener noreferrer">
-                <div class="work-overlay">
-                    <h3>GoEventBus</h3>
-                    <p>Lightweight, high-performance event sourcing library enabling asynchronous event-driven communication between services.</p>
-                     <p style="margin-top: 10px; font-size: 0.9rem; color: var(--secondary);">Technologies: Golang, Event Sourcing, Microservices</p>
+
+                <div class="timeline-item mb-12 md:flex md:flex-row-reverse md:items-start md:mb-16 fade-in">
+                     <div class="absolute left-5 top-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-50 z-10 md:hidden"></div>
+                    <div class="relative pl-10 md:pl-0 md:w-1/2 md:pl-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 hover:shadow-lg transition duration-300">
+                            <h3 class="text-xl font-semibold text-blue-700 mb-1">intive</h3>
+                            <h4 class="text-md font-medium text-slate-600 mb-2">Junior Software Engineer</h4>
+                            <span class="block text-sm text-slate-500 mb-3">November 2021 - May 2022</span>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Gained hands-on experience in Golang development, focusing on building and testing backend services.
+                            </p>
+                        </div>
+                    </div>
+                     <div class="hidden md:block absolute left-1/2 top-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-50 z-10 -ml-3"></div>
+                    <div class="hidden md:block md:w-1/2 md:pr-8"></div>
                 </div>
-            </a>
-            <a class="work-item border-glow fade-in" href="https://github.com/Raezil/memoryArena" target="_blank" rel="noopener noreferrer">
-                <div class="work-overlay">
-                    <h3>MemoryArena</h3>
-                    <p>Golang package consolidating memory allocations into a single area, simplifying management and enhancing efficiency.</p>
-                     <p style="margin-top: 10px; font-size: 0.9rem; color: var(--secondary);">Technologies: Golang, Custom Memory Management</p>
+
+                <div class="timeline-item md:flex md:items-start fade-in">
+                     <div class="absolute left-5 top-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-50 z-10 md:hidden"></div>
+                    <div class="relative pl-10 md:pl-0 md:w-1/2 md:pr-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 hover:shadow-lg transition duration-300">
+                            <h3 class="text-xl font-semibold text-blue-700 mb-1">Monterail</h3>
+                            <h4 class="text-md font-medium text-slate-600 mb-2">RoR Developer</h4>
+                            <span class="block text-sm text-slate-500 mb-3">May 2021 - September 2021</span>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Worked with Ruby on Rails and GraphQL to develop and maintain web applications, focusing on API development.
+                            </p>
+                        </div>
+                    </div>
+                     <div class="hidden md:block absolute left-1/2 top-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-50 z-10 -ml-3"></div>
+                    <div class="hidden md:block md:w-1/2 md:pl-8"></div>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/kamilm97/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span>in</span></a>
-            <a href="https://github.com/Raezil" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span>GH</span></a>
-            <a href="mailto:kmosc@protonmail.com" class="social-link" aria-label="Email"><span>@</span></a>
+    <section id="work" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-6">FEATURED PROJECTS</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto mb-16"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="https://github.com/Raezil/Thunder" target="_blank" rel="noopener noreferrer" class="block bg-slate-50 rounded-lg shadow-md border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition duration-300 fade-in">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-blue-700 mb-2">Thunder</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">A Minimalist Backend Framework in Go — a gRPC-Gateway-powered framework with Prisma, Kubernetes, and Go for scalable microservices.</p>
+                        <p class="text-xs text-cyan-700 font-medium">Technologies: Golang, gRPC, Prisma, Kubernetes</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Raezil/GoEventBus" target="_blank" rel="noopener noreferrer" class="block bg-slate-50 rounded-lg shadow-md border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition duration-300 fade-in" style="transition-delay: 0.1s;">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-blue-700 mb-2">GoEventBus</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Lightweight, high-performance event sourcing library enabling asynchronous event-driven communication between services.</p>
+                         <p class="text-xs text-cyan-700 font-medium">Technologies: Golang, Event Sourcing, Microservices</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Raezil/memoryArena" target="_blank" rel="noopener noreferrer" class="block bg-slate-50 rounded-lg shadow-md border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition duration-300 fade-in" style="transition-delay: 0.2s;">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-blue-700 mb-2">MemoryArena</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Golang package consolidating memory allocations into a single area, simplifying management and enhancing efficiency.</p>
+                         <p class="text-xs text-cyan-700 font-medium">Technologies: Golang, Custom Memory Management</p>
+                    </div>
+                </a>
+            </div>
         </div>
-        <p>&copy; 2025 Kamil Mosciszko. All rights reserved.</p>
-         <p style="font-size: 0.8rem; color: #555; margin-top: 1rem;">Location: Wroclaw, Poland</p>
+    </section>
+
+    <footer id="contact" class="bg-slate-800 text-slate-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl font-semibold text-white mb-8">GET IN TOUCH</h2>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.linkedin.com/in/kamilm97/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-slate-400 hover:text-blue-400 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                 <a href="https://github.com/Raezil" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-slate-400 hover:text-white transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-1.5 6-6.5.08-1.3-.5-2.6-1.5-3.5A4.8 4.8 0 0 0 18 5c0-1.5-1.5-3-3-3h-1.5a4.8 4.8 0 0 0-3 1.5c-.5 1-.6 2.2-.3 3.5A5.4 5.4 0 0 0 8 9c0 5 3 6.5 6 6.5-1 1-1.5 2.5-1.5 3.5V22"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                </a>
+                 <a href="mailto:kmosc@protonmail.com" aria-label="Email" class="text-slate-400 hover:text-cyan-400 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+            </div>
+            <p class="text-sm mb-2">&copy; 2025 Kamil Mosciszko. All rights reserved.</p>
+            <p class="text-xs text-slate-500">Location: Wroclaw, Poland</p>
+        </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.getElementById('nav-links');
-            const navLinksItems = document.querySelectorAll('.nav-links a');
-            const fadeElements = document.querySelectorAll('.fade-in');
-            const canvas = document.getElementById('matrixRain');
-            const ctx = canvas.getContext('2d');
+            const navLinks = document.querySelectorAll('#mobile-menu a, nav a[href^="#"]'); // Include desktop links for smooth scroll
 
             // --- Mobile Menu Toggle ---
-            mobileMenu.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
+            mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.classList.toggle('active'); // Toggle active class for icon animation
             });
 
             // --- Close Mobile Menu on Link Click & Smooth Scroll ---
-            navLinksItems.forEach(link => {
+            navLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
-                    if (navLinks.classList.contains('active')) {
-                         navLinks.classList.remove('active');
-                         mobileMenu.classList.remove('active');
+                    // Close mobile menu if it's open
+                    if (mobileMenuButton.classList.contains('active')) {
+                         mobileMenuButton.setAttribute('aria-expanded', 'false');
+                         mobileMenu.classList.add('hidden');
+                         mobileMenuButton.classList.remove('active');
                     }
+
+                    // Handle smooth scrolling for internal links
                     const targetId = link.getAttribute('href');
                     if (targetId && targetId.startsWith('#')) {
-                         event.preventDefault();
-                         const targetElement = document.querySelector(targetId);
-                         if (targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                         }
+                        // event.preventDefault(); // Keep default behavior for navigation, smooth scroll is handled by CSS
+                        // const targetElement = document.querySelector(targetId);
+                        // if (targetElement) {
+                        //     targetElement.scrollIntoView({
+                        //         behavior: 'smooth'
+                        //     });
+                        // }
                     }
                 });
             });
 
-             // --- Intersection Observer for Fade-in Elements ---
+            // --- Intersection Observer for Fade-in Elements ---
             const observerOptions = {
-                root: null,
+                root: null, // viewport
                 rootMargin: '0px',
-                threshold: 0.15
+                threshold: 0.1 // Trigger when 10% of the element is visible
             };
 
             const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
+                        // Optional: Unobserve after animation to save resources
+                        // observer.unobserve(entry.target);
                     }
+                    // Optional: Remove 'active' class if element scrolls out of view
+                    // else {
+                    //     entry.target.classList.remove('active');
+                    // }
                 });
             };
 
             const observer = new IntersectionObserver(observerCallback, observerOptions);
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-            // --- Matrix Digital Rain Effect ---
-            let animationFrameId;
-
-            const resizeCanvas = () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                columns = Math.floor(canvas.width / 20);
-                drops = [];
-                for(let i = 0; i < columns; i++) {
-                    drops[i] = Math.floor(Math.random() * canvas.height / 20);
-                }
-            };
-
-            let columns;
-            let drops = [];
-            resizeCanvas();
-
-            const matrix = () => {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#ff0044';
-                ctx.font = '15px monospace';
-
-                for(let i = 0; i < drops.length; i++) {
-                    const text = String.fromCharCode(Math.floor(Math.random() * 94) + 33);
-                    ctx.fillText(text, i * 20, drops[i] * 20);
-                    if(drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-                 animationFrameId = requestAnimationFrame(matrix);
-            };
-
-            matrix();
-
-            // --- Resize Handling ---
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                 clearTimeout(resizeTimer);
-                 resizeTimer = setTimeout(() => {
-                    cancelAnimationFrame(animationFrameId);
-                    resizeCanvas();
-                    matrix();
-                 }, 250);
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
             });
         });
     </script>
