@@ -1,5 +1,5 @@
 - 👋 Hi, I’m Kamil Mościszko
-- 👀 I’m interested in web development, backend. I'm currently working on the [Thunder](https://github.com/Raezil/Thunder).
+- 👀 I’m interested in web development, backend. I'm currently working on the [UTCP](https://github.com/universal-tool-calling-protocol/go-utcp).
 - 📫 How to reach me: kmosc@protonmail.com
 
 <!---
