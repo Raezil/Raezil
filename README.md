@@ -1,5 +1,5 @@
 - 👋 Hi, I’m Kamil Mościszko
-- 👀 I’m interested in web development, backend and AI. I'm currently working on the [go-utcp](https://github.com/universal-tool-calling-protocol/go-utcp), [rs-utcp](https://github.com/universal-tool-calling-protocol/rs-utcp) and [go-agent](https://github.com/Raezil/lattice-agent)
+- 👀 I’m interested in web development, backend and AI. I'm currently working on the [grpc-graphql-gateway](https://github.com/Protocol-Lattice/grpc_graphql_gateway)
 - 📫 How to reach me: kmosc@protonmail.com
 
 I am member of [Universal Tool Calling Protocol](https://github.com/universal-tool-calling-protocol) and [Protocol Lattice](https://github.com/Protocol-Lattice)
