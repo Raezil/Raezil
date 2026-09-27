@@ -1,10 +1,13 @@
-- 👋 Hi, I’m Kamil Mościszko
-- 👀 I’m interested in web development, backend and AI. I'm currently working on the [grpc-graphql-gateway](https://github.com/Protocol-Lattice/grpc_graphql_gateway)
-- 📫 How to reach me: kmosc@protonmail.com
+# Kamil Mościszko
 
-I am member of [Universal Tool Calling Protocol](https://github.com/universal-tool-calling-protocol) and [Protocol Lattice](https://github.com/Protocol-Lattice)
+### I make AI agents think less — and decide better.
 
-<!---
-Raezil/Raezil is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+Golang developer building open-source infrastructure for **faster, cheaper and more reliable AI agents**.
+
+- ⚡ [harness-router](https://github.com/Protocol-Lattice/harness-router) — Jev-powered tool routing + MCTS for agentic harnesses
+- 🔌 [UTCP](https://github.com/universal-tool-calling-protocol) — universal tool-calling SDKs and transports
+- 🧠 [Predict-With-Jev](https://github.com/Protocol-Lattice/Predict-With-Jev) — decision systems powered by Jev
+
+**Current obsession:** fewer model calls, lower token spend, better decisions.
+
+[Protocol Lattice](https://github.com/Protocol-Lattice) · [LinkedIn](https://linkedin.com/in/kamilm97) · [harness-router](https://harness-router.vercel.app)
