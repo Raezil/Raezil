@@ -2,7 +2,7 @@
 
 ### I make AI agents think less — and decide better.
 
-Golang developer building open-source infrastructure for **faster, cheaper and more reliable AI agents**.
+Developer building open-source infrastructure for **faster, cheaper and more reliable AI agents**.
 
 - ⚡ [harness-router](https://github.com/Protocol-Lattice/harness-router) — Jev-powered tool routing + MCTS for agentic harnesses
 - 🔌 [UTCP](https://github.com/universal-tool-calling-protocol) — universal tool-calling SDKs and transports
