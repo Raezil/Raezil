@@ -1,377 +1,391 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamil Mościszko — Software Engineer</title>
-    <meta name="description" content="Resume of Kamil Mościszko, Backend Developer specializing in Go and Rust.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kamil Mościszko — Golang Developer · AI Agents · Backend Systems</title>
+  <meta name="description" content="Portfolio of Kamil Mościszko — Golang developer building backend systems, AI-agent infrastructure, event-driven software and developer tooling.">
+  <meta name="theme-color" content="#07100f">
+  <meta property="og:title" content="Kamil Mościszko — Golang Developer">
+  <meta property="og:description" content="Go backend systems, AI agents, developer tooling and open-source infrastructure.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="noise-overlay"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">KM<span class="logo-dot">.</span></div>
-            <div class="nav-status">
-                <span class="status-dot"></span>
-                <span class="status-text">Available for work</span>
-            </div>
-        </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Kamil Mościszko home">
+      <span class="brand-mark">KM</span>
+      <span class="brand-copy">
+        <strong>Kamil Mościszko</strong>
+        <small>Golang developer</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#stack">Stack</a>
+      <a class="nav-cta" href="mailto:kmosc@protonmail.com">Contact</a>
     </nav>
+  </header>
 
-    <main class="container">
-        <!-- HERO -->
-        <header class="hero">
-            <div class="hero-eyebrow">
-                <span class="mono">01 /</span> Backend Engineer
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="signal"></span> Go · Backend · AI agents · Open source</p>
+        <h1>I build backend systems where <span>fast paths stay fast</span> and AI handles the ambiguity.</h1>
+        <p class="hero-lede">
+          Golang developer with commercial experience in backend engineering and a growing open-source portfolio
+          around AI-agent runtimes, decision layers, event-driven systems, protocols and developer tooling.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore selected work <span aria-hidden="true">↘</span></a>
+          <a class="button button-secondary" href="https://github.com/Raezil" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a class="button button-secondary" href="https://linkedin.com/in/kamilm97" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Engineering focus">
+        <div class="panel-head">
+          <span class="mono">engineering.profile</span>
+          <span class="status"><i></i> open source active</span>
+        </div>
+        <dl class="focus-list">
+          <div>
+            <dt>Primary</dt>
+            <dd>Go backend engineering</dd>
+          </div>
+          <div>
+            <dt>AI systems</dt>
+            <dd>Agents, routing, tool calling, MCTS</dd>
+          </div>
+          <div>
+            <dt>Distributed</dt>
+            <dd>Event buses, brokers, streaming APIs</dd>
+          </div>
+          <div>
+            <dt>Interfaces</dt>
+            <dd>gRPC, GraphQL, REST, MCP, UTCP</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="intro shell">
+      <div class="section-kicker">Profile</div>
+      <div class="intro-grid">
+        <h2>Backend first.<br>AI where it earns its place.</h2>
+        <div class="intro-copy">
+          <p>
+            Most recently I worked as a Junior Golang Developer at Wirtualna Polska, developing AI-agent systems
+            and supporting backend components in Go. My commercial background also includes Go services, Ruby on
+            Rails systems and GraphQL APIs.
+          </p>
+          <p>
+            Outside commercial work, I build open-source systems around agent execution, decision routing,
+            event-driven architecture, protocol interoperability, concurrency, performance and testing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience shell" id="experience">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Experience</p>
+          <h2>Production software, across backend stacks.</h2>
+        </div>
+        <p class="section-note">Commercial engineering experience from 2021–2026.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="time">
+            <span>Aug 2026</span>
+            <span>Oct 2026</span>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-title">
+              <h3>Junior Golang Developer</h3>
+              <a href="https://www.wp.pl/" target="_blank" rel="noreferrer">Wirtualna Polska ↗</a>
             </div>
-            <h1 class="hero-name">
-                <span class="name-line" style="--delay:0ms">Kamil</span>
-                <span class="name-line" style="--delay:80ms">Mościszko</span>
-            </h1>
-            <p class="hero-sub">Go · Rust · Distributed Systems</p>
+            <ul>
+              <li>Developed AI-agent systems and supporting backend components in Go.</li>
+              <li>Designed, implemented, debugged and iterated on agent-based software for production-oriented backend engineering problems.</li>
+              <li>Used Claude Code in the development workflow to implement, analyze, test and improve Go systems.</li>
+            </ul>
+          </div>
+        </article>
 
-            <div class="contact-row">
-                <a href="mailto:kmosc@protonmail.com" class="chip">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    kmosc@protonmail.com
-                </a>
-                <a href="tel:+48575044972" class="chip">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.12 4.11h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 11.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 18.92z"/></svg>
-                    +48 575 044 972
-                </a>
-                <span class="chip">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    Szczecin, Poland
-                </span>
+        <article class="timeline-item">
+          <div class="time">
+            <span>Jun 2022</span>
+            <span>Sep 2022</span>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-title">
+              <h3>Software Engineer</h3>
+              <span>EPAM Systems</span>
             </div>
-        </header>
+            <ul>
+              <li>Enhanced and maintained Ruby on Rails backend systems for enterprise clients.</li>
+              <li>Contributed to API development, backend architecture and performance improvements in an established production codebase.</li>
+            </ul>
+          </div>
+        </article>
 
-        <!-- SUMMARY -->
-        <section class="section" style="--section-delay: 0.1s">
-            <div class="section-label"><span class="mono">02 /</span> About</div>
-            <div class="summary-card">
-                <blockquote class="summary-quote">
-                    Backend Engineer with over <strong>3 years</strong> of professional experience specializing in
-                    <strong>Golang</strong> and <strong>Rust</strong>. Focus on distributed systems, developer tools,
-                    and open-source software. Experience in building high-performance APIs, RPC systems, and
-                    infrastructure tools. Actively leverages AI-assisted development to increase productivity and code quality.
-                </blockquote>
+        <article class="timeline-item">
+          <div class="time">
+            <span>Nov 2021</span>
+            <span>May 2022</span>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-title">
+              <h3>Junior Software Engineer</h3>
+              <span>intive</span>
             </div>
-        </section>
+            <ul>
+              <li>Developed backend services in Go for web-scale applications.</li>
+              <li>Implemented unit tests and contributed to backend reliability, maintainability and production code quality.</li>
+            </ul>
+          </div>
+        </article>
 
-        <!-- SKILLS -->
-        <section class="section" style="--section-delay: 0.2s">
-            <div class="section-label"><span class="mono">03 /</span> Skills</div>
-            <div class="skills-grid">
-                <div class="skill-block">
-                    <h4 class="skill-heading">Languages</h4>
-                    <div class="tag-row">
-                        <span class="tag tag-go">Go</span>
-                        <span class="tag tag-rust">Rust</span>
-                        <span class="tag tag-ruby">Ruby</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <h4 class="skill-heading">APIs</h4>
-                    <div class="tag-row">
-                        <span class="tag">gRPC</span>
-                        <span class="tag">GraphQL</span>
-                        <span class="tag">REST</span>
-                        <span class="tag">RPC</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <h4 class="skill-heading">Frameworks</h4>
-                    <div class="tag-row">
-                        <span class="tag">Gin</span>
-                        <span class="tag">Rails</span>
-                        <span class="tag">Sidekiq</span>
-                        <span class="tag">RSpec</span>
-                        <span class="tag">Prisma</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <h4 class="skill-heading">Infrastructure</h4>
-                    <div class="tag-row">
-                        <span class="tag">Docker</span>
-                        <span class="tag">Kubernetes</span>
-                        <span class="tag">CI/CD</span>
-                        <span class="tag">MinIO</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <h4 class="skill-heading">Databases</h4>
-                    <div class="tag-row">
-                        <span class="tag">SQL</span>
-                        <span class="tag">NoSQL</span>
-                    </div>
-                </div>
-                <div class="skill-block skill-block--wide">
-                    <h4 class="skill-heading">Concepts</h4>
-                    <div class="tag-row">
-                        <span class="tag tag-concept">Concurrency</span>
-                        <span class="tag tag-concept">Event-Driven Architecture</span>
-                        <span class="tag tag-concept">Event Sourcing</span>
-                        <span class="tag tag-concept">Memory Management</span>
-                    </div>
-                </div>
+        <article class="timeline-item">
+          <div class="time">
+            <span>May 2021</span>
+            <span>Sep 2021</span>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-title">
+              <h3>Junior Software Engineer</h3>
+              <span>Monterail</span>
             </div>
-        </section>
+            <ul>
+              <li>Designed and maintained GraphQL APIs and backend functionality.</li>
+              <li>Contributed to API-focused web application development.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        <!-- EXPERIENCE -->
-        <section class="section" style="--section-delay: 0.3s">
-            <div class="section-label"><span class="mono">04 /</span> Experience</div>
+    <section class="projects shell" id="projects">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Selected open source</p>
+          <h2>Systems, not demos.</h2>
+        </div>
+        <p class="section-note">Projects focused on decision quality, execution speed, interoperability and production-oriented Go.</p>
+      </div>
 
-            <div class="exp-list">
-
-                <article class="exp-card">
-                    <div class="exp-meta">
-                        <span class="exp-period mono">2023 — Present</span>
-                    </div>
-                    <div class="exp-body">
-                        <div class="exp-top">
-                            <h3 class="exp-role">Open Source Developer</h3>
-                            <span class="exp-company">Protocol-Lattice · GitHub</span>
-                        </div>
-                        <ul class="exp-tasks">
-                            <li>Building and maintaining open-source developer tools and infrastructure software</li>
-                            <li>Contributing to distributed systems and high-performance backend projects in Go and Rust</li>
-                            <li>Managing open-source repositories and collaborating with the community</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="exp-card">
-                    <div class="exp-meta">
-                        <span class="exp-period mono">Jun 2022 — Sep 2022</span>
-                    </div>
-                    <div class="exp-body">
-                        <div class="exp-top">
-                            <h3 class="exp-role">Software Engineer</h3>
-                            <span class="exp-company">EPAM Systems</span>
-                        </div>
-                        <ul class="exp-tasks">
-                            <li>Maintenance and improvement of Ruby on Rails backend for enterprise clients</li>
-                            <li>Increasing reliability and performance of production services</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="exp-card">
-                    <div class="exp-meta">
-                        <span class="exp-period mono">Nov 2021 — May 2022</span>
-                    </div>
-                    <div class="exp-body">
-                        <div class="exp-top">
-                            <h3 class="exp-role">Golang Developer</h3>
-                            <span class="exp-company">Intive</span>
-                        </div>
-                        <ul class="exp-tasks">
-                            <li>Developing Golang backend services and unit tests for internet-scale systems</li>
-                            <li>Implementation of high-performance APIs</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="exp-card">
-                    <div class="exp-meta">
-                        <span class="exp-period mono">May 2021 — Sep 2021</span>
-                    </div>
-                    <div class="exp-body">
-                        <div class="exp-top">
-                            <h3 class="exp-role">Ruby on Rails Developer</h3>
-                            <span class="exp-company">Monterail</span>
-                        </div>
-                        <ul class="exp-tasks">
-                            <li>Designing and implementing GraphQL APIs and backend features</li>
-                        </ul>
-                    </div>
-                </article>
-
+      <div class="featured-grid">
+        <article class="project project-featured">
+          <div class="project-topline">
+            <span class="project-index">01</span>
+            <div class="project-links">
+              <a href="https://harness-router.vercel.app" target="_blank" rel="noreferrer">Website ↗</a>
+              <a href="https://github.com/Protocol-Lattice/harness-router" target="_blank" rel="noreferrer">Source ↗</a>
             </div>
-        </section>
-        <!-- PROJECTS -->
-        <section class="section" style="--section-delay: 0.35s">
-            <div class="section-label"><span class="mono">05 /</span> Open Source</div>
+          </div>
+          <div>
+            <p class="project-label">Decision infrastructure for AI coding agents</p>
+            <h3>Harness Router</h3>
+            <p class="project-desc">
+              Framework-agnostic decision layer for agentic harnesses. Obvious actions bypass model routing,
+              ambiguous choices use TypeSafeAI JEV, and multi-step decisions can use bounded Monte Carlo Tree Search.
+            </p>
+          </div>
+          <div class="project-proof">
+            <span>JEV / OpenRouter</span>
+            <span>MCP</span>
+            <span>MCTS</span>
+            <span>4,096-simulation configs tested</span>
+          </div>
+        </article>
 
-            <div class="projects-group">
-                <div class="projects-group-label">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    universal-tool-calling-protocol
-                </div>
-                <div class="projects-grid">
-
-                    <a class="proj-card" href="https://github.com/universal-tool-calling-protocol/go-utcp" target="_blank" rel="noopener" data-repo="go-utcp">
-                        <div class="proj-top">
-                            <span class="proj-name">go-utcp</span>
-                            <div class="proj-stars">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6 5.85 1.416 8.259L12 18.9l-7.416 3.901 1.416-8.26-6-5.849 8.332-1.21z"/></svg>
-                                <span class="star-count">—</span>
-                            </div>
-                        </div>
-                        <p class="proj-desc">Official Go implementation of the Universal Tool Calling Protocol — a modern, scalable standard for tool interop across HTTP, gRPC, WebSocket, CLI and more.</p>
-                        <div class="proj-footer">
-                            <span class="lang-dot lang-go"></span><span class="proj-lang">Go</span>
-                            <span class="proj-tag">AI Agents</span>
-                            <span class="proj-tag">MCP</span>
-                        </div>
-                    </a>
-
-                    <a class="proj-card" href="https://github.com/universal-tool-calling-protocol/rs-utcp" target="_blank" rel="noopener" data-repo="rs-utcp">
-                        <div class="proj-top">
-                            <span class="proj-name">rs-utcp</span>
-                            <div class="proj-stars">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6 5.85 1.416 8.259L12 18.9l-7.416 3.901 1.416-8.26-6-5.849 8.332-1.21z"/></svg>
-                                <span class="star-count">—</span>
-                            </div>
-                        </div>
-                        <p class="proj-desc">Official Rust implementation of UTCP — async-first, with 12 communication protocols, LLM orchestration, sandboxed Codemode execution, and OpenAPI support.</p>
-                        <div class="proj-footer">
-                            <span class="lang-dot lang-rust"></span><span class="proj-lang">Rust</span>
-                            <span class="proj-tag">Tokio</span>
-                            <span class="proj-tag">AI Agents</span>
-                        </div>
-                    </a>
-
-                </div>
+        <article class="project project-featured project-accent">
+          <div class="project-topline">
+            <span class="project-index">02</span>
+            <div class="project-links">
+              <a href="https://goeventbus.vercel.app" target="_blank" rel="noreferrer">Website ↗</a>
+              <a href="https://github.com/Protocol-Lattice/GoEventBus" target="_blank" rel="noreferrer">Source ↗</a>
             </div>
+          </div>
+          <div>
+            <p class="project-label">Event-driven Go + optional decision layer</p>
+            <h3>GoEventBus</h3>
+            <p class="project-desc">
+              High-performance event bus for Go with a bounded MPMC core, fan-out, ordered and batch handlers,
+              middleware, lifecycle hooks and 12 official broker options. Its optional routing path is
+              <strong>rules → cache → JEV</strong>, so deterministic and repeated decisions stay local while JEV
+              resolves ambiguous event selection.
+            </p>
+          </div>
+          <div class="project-proof">
+            <span>Go</span>
+            <span>12 brokers</span>
+            <span>Rules → Cache → JEV</span>
+            <span>Event-driven systems</span>
+          </div>
+        </article>
+      </div>
 
-            <div class="projects-group">
-                <div class="projects-group-label">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    Protocol-Lattice
-                </div>
-                <div class="projects-grid">
+      <div class="project-grid">
+        <article class="project">
+          <div class="project-topline">
+            <span class="project-index">03</span>
+            <a href="https://github.com/Protocol-Lattice/go-agent" target="_blank" rel="noreferrer">Source ↗</a>
+          </div>
+          <div>
+            <p class="project-label">Agent runtime</p>
+            <h3>Go-Agent</h3>
+            <p class="project-desc">Go runtime for autonomous multi-step agents with tools, skills, files, memory, orchestration, guardrails and CodeMode-style programmatic tool execution.</p>
+          </div>
+          <div class="project-proof"><span>Go</span><span>Agents</span><span>Tool calling</span><span>Memory</span></div>
+        </article>
 
-                    <a class="proj-card" href="https://github.com/Protocol-Lattice/thunder" target="_blank" rel="noopener" data-repo="thunder">
-                        <div class="proj-top">
-                            <span class="proj-name">thunder</span>
-                            <div class="proj-stars">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6 5.85 1.416 8.259L12 18.9l-7.416 3.901 1.416-8.26-6-5.849 8.332-1.21z"/></svg>
-                                <span class="star-count">—</span>
-                            </div>
-                        </div>
-                        <p class="proj-desc">Minimalist Go backend framework that auto-generates REST and GraphQL APIs from gRPC service definitions — zero boilerplate, production-ready.</p>
-                        <div class="proj-footer">
-                            <span class="lang-dot lang-go"></span><span class="proj-lang">Go</span>
-                            <span class="proj-tag">gRPC</span>
-                            <span class="proj-tag">GraphQL</span>
-                        </div>
-                    </a>
+        <article class="project">
+          <div class="project-topline">
+            <span class="project-index">04</span>
+            <a href="https://github.com/Protocol-Lattice/thunder" target="_blank" rel="noreferrer">Source ↗</a>
+          </div>
+          <div>
+            <p class="project-label">Backend framework</p>
+            <h3>Thunder</h3>
+            <p class="project-desc">Production-oriented Go framework exposing gRPC services through REST and GraphQL with auth, TLS, OpenAPI, WebSockets, subscriptions, database access and deployment tooling.</p>
+          </div>
+          <div class="project-proof"><span>Go</span><span>gRPC</span><span>GraphQL</span><span>Kubernetes</span></div>
+        </article>
 
-                    <a class="proj-card" href="https://github.com/Protocol-Lattice/go-agent" target="_blank" rel="noopener" data-repo="go-agent">
-                        <div class="proj-top">
-                            <span class="proj-name">go-agent</span>
-                            <div class="proj-stars">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6 5.85 1.416 8.259L12 18.9l-7.416 3.901 1.416-8.26-6-5.849 8.332-1.21z"/></svg>
-                                <span class="star-count">—</span>
-                            </div>
-                        </div>
-                        <p class="proj-desc">Production-grade agent framework for Go — graph-aware memory, UTCP-native tool calling, and multi-agent orchestration built for scale.</p>
-                        <div class="proj-footer">
-                            <span class="lang-dot lang-go"></span><span class="proj-lang">Go</span>
-                            <span class="proj-tag">Agents</span>
-                            <span class="proj-tag">UTCP</span>
-                        </div>
-                    </a>
+        <article class="project">
+          <div class="project-topline">
+            <span class="project-index">05</span>
+            <a href="https://github.com/universal-tool-calling-protocol/go-utcp" target="_blank" rel="noreferrer">Source ↗</a>
+          </div>
+          <div>
+            <p class="project-label">Protocol interoperability</p>
+            <h3>Universal Tool Calling Protocol</h3>
+            <p class="project-desc">Contributor and maintainer of the Go UTCP implementation, working on transports, provider infrastructure, MCP integration, registry clients and CodeMode workflows.</p>
+          </div>
+          <div class="project-proof"><span>Go</span><span>UTCP</span><span>MCP</span><span>CodeMode</span></div>
+        </article>
 
-                    <a class="proj-card" href="https://github.com/Protocol-Lattice/GoEventBus" target="_blank" rel="noopener" data-repo="GoEventBus">
-                        <div class="proj-top">
-                            <span class="proj-name">GoEventBus</span>
-                            <div class="proj-stars">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6 5.85 1.416 8.259L12 18.9l-7.416 3.901 1.416-8.26-6-5.849 8.332-1.21z"/></svg>
-                                <span class="star-count">—</span>
-                            </div>
-                        </div>
-                        <p class="proj-desc">A lock-free, ultra-fast event bus for Go — designed for high-throughput event-driven architectures with minimal overhead.</p>
-                        <div class="proj-footer">
-                            <span class="lang-dot lang-go"></span><span class="proj-lang">Go</span>
-                            <span class="proj-tag">Event-Driven</span>
-                            <span class="proj-tag">Concurrency</span>
-                        </div>
-                    </a>
+        <article class="project">
+          <div class="project-topline">
+            <span class="project-index">06</span>
+            <a href="https://github.com/Protocol-Lattice/Predict-With-Jev" target="_blank" rel="noreferrer">Source ↗</a>
+          </div>
+          <div>
+            <p class="project-label">Decision pipelines</p>
+            <h3>Predict-With-Jev</h3>
+            <p class="project-desc">Market research and forecasting dashboard using staged JEV decisions, multiple forecast horizons, durable evaluation journals and autonomous paper-trading workflows.</p>
+          </div>
+          <div class="project-proof"><span>TypeScript</span><span>React</span><span>JEV</span><span>OpenRouter</span></div>
+        </article>
+      </div>
 
-                    <a class="proj-card" href="https://github.com/Protocol-Lattice/grpc_graphql_gateway" target="_blank" rel="noopener" data-repo="grpc_graphql_gateway">
-                        <div class="proj-top">
-                            <span class="proj-name">grpc_graphql_gateway</span>
-                            <div class="proj-stars">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.332 1.21-6 5.85 1.416 8.259L12 18.9l-7.416 3.901 1.416-8.26-6-5.849 8.332-1.21z"/></svg>
-                                <span class="star-count">—</span>
-                            </div>
-                        </div>
-                        <p class="proj-desc">A protoc plugin written in Rust that generates GraphQL execution code directly from Protocol Buffer definitions.</p>
-                        <div class="proj-footer">
-                            <span class="lang-dot lang-rust"></span><span class="proj-lang">Rust</span>
-                            <span class="proj-tag">protoc</span>
-                            <span class="proj-tag">GraphQL</span>
-                        </div>
-                    </a>
+      <div class="more-work">
+        <a href="https://github.com/Protocol-Lattice/neo" target="_blank" rel="noreferrer">
+          <span><strong>Neo</strong> — type-safe Go framework with Query, Mutation and Subscription abstractions plus Go/TypeScript client generation.</span>
+          <span>↗</span>
+        </a>
+        <a href="https://github.com/Protocol-Lattice/memoryArena" target="_blank" rel="noreferrer">
+          <span><strong>memoryArena</strong> — generic, concurrent and pooled arena experiments with allocation and execution benchmarks.</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
 
-                </div>
-            </div>
-        </section>
-    </main>
+    <section class="principles shell">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Engineering approach</p>
+          <h2>Make the common path boring.</h2>
+        </div>
+      </div>
+      <div class="principle-grid">
+        <article>
+          <span>01</span>
+          <h3>Fast paths first</h3>
+          <p>Keep deterministic work local and cheap. Add heavier decision machinery only where uncertainty actually exists.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Interfaces over lock-in</h3>
+          <p>Design around replaceable transports, protocols and providers so application code survives infrastructure changes.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Measure the system</h3>
+          <p>Use benchmarks, tests, caching and explicit failure modes to turn architecture ideas into observable engineering behavior.</p>
+        </article>
+      </div>
+    </section>
 
-    <footer>
-        <span class="mono">© <span id="year"></span> Kamil Mościszko</span>
-        <span class="mono footer-loc">PL / Szczecin</span>
-    </footer>
+    <section class="stack shell" id="stack">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Technical stack</p>
+          <h2>Tools I use to ship.</h2>
+        </div>
+      </div>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+      <div class="stack-grid">
+        <div class="stack-group">
+          <h3>Languages</h3>
+          <p>Go · TypeScript · Python · Rust · Ruby · Lua</p>
+        </div>
+        <div class="stack-group">
+          <h3>AI & agents</h3>
+          <p>AI Agents · OpenRouter · TypeSafeAI JEV · MCP · UTCP · CodeMode · Tool Calling · MCTS · Claude Code · Codex</p>
+        </div>
+        <div class="stack-group">
+          <h3>Backend & APIs</h3>
+          <p>gRPC · GraphQL · REST · WebSockets · Protocol Buffers · Gin · Ruby on Rails · Prisma</p>
+        </div>
+        <div class="stack-group">
+          <h3>Distributed systems</h3>
+          <p>RabbitMQ · Kafka · Event-Driven Architecture · Event Buses · Concurrent Systems · Streaming APIs</p>
+        </div>
+        <div class="stack-group">
+          <h3>Infrastructure</h3>
+          <p>Docker · Kubernetes · GitHub Actions · CI/CD · Git</p>
+        </div>
+        <div class="stack-group">
+          <h3>Data</h3>
+          <p>PostgreSQL · MySQL · SQLite · MinIO</p>
+        </div>
+      </div>
+    </section>
 
-        // Staggered section reveal on scroll
-        const sections = document.querySelectorAll('.section');
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-            });
-        }, { threshold: 0.08 });
-        sections.forEach(s => io.observe(s));
+    <section class="contact shell">
+      <p class="section-kicker">Contact</p>
+      <div class="contact-card">
+        <div>
+          <h2>Looking for a Go engineer who also understands agent infrastructure?</h2>
+          <p>Backend systems, AI-agent tooling, event-driven architecture and open-source engineering.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:kmosc@protonmail.com">kmosc@protonmail.com ↗</a>
+          <a href="https://github.com/Raezil" target="_blank" rel="noreferrer">github.com/Raezil ↗</a>
+          <a href="https://linkedin.com/in/kamilm97" target="_blank" rel="noreferrer">linkedin.com/in/kamilm97 ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        // Exp card hover tilt
-        document.querySelectorAll('.exp-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const r = card.getBoundingClientRect();
-                const x = (e.clientX - r.left) / r.width - 0.5;
-                const y = (e.clientY - r.top) / r.height - 0.5;
-                card.style.setProperty('--rx', `${y * -6}deg`);
-                card.style.setProperty('--ry', `${x * 6}deg`);
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.setProperty('--rx', '0deg');
-                card.style.setProperty('--ry', '0deg');
-            });
-        });
+  <footer class="site-footer shell">
+    <span>© <span id="year"></span> Kamil Mościszko</span>
+    <span class="mono">built as a static site / zero framework overhead</span>
+  </footer>
 
-        // Live star counts from GitHub API
-        const repos = [
-            'universal-tool-calling-protocol/go-utcp',
-            'universal-tool-calling-protocol/rs-utcp',
-            'Protocol-Lattice/thunder',
-            'Protocol-Lattice/go-agent',
-            'Protocol-Lattice/GoEventBus',
-            'Protocol-Lattice/grpc_graphql_gateway',
-        ];
-
-        repos.forEach(async (repo) => {
-            try {
-                const res = await fetch(`https://api.github.com/repos/${repo}`);
-                if (!res.ok) return;
-                const data = await res.json();
-                const stars = data.stargazers_count;
-                const repoName = repo.split('/')[1];
-                const el = document.querySelector(`[data-repo="${repoName}"] .star-count`);
-                if (el) el.textContent = stars >= 1000 ? (stars / 1000).toFixed(1) + 'k' : stars;
-            } catch (_) {}
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
